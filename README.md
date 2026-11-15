@@ -1,7 +1,7 @@
 # BANKING77 Intent Router
 
 Accelerated Computational Linguistics (FA26) course project by Lihan Li and Xizi Luo.
-The project compares a TF–IDF + logistic-regression baseline with fine-tuned ModernBERT-base on BANKING77 (77 intents) and includes a Streamlit demo.
+The project compares a TF–IDF + logistic-regression baseline with fine-tuned ModernBERT-base on BANKING77 (77 intents). It includes a hosted browser demo (both models run client-side) and a local Streamlit app.
 
 * Results: [RESULTS.md](RESULTS.md). An interactive version is in [report/banking77_report.html](report/banking77_report.html); open it in any browser.
 * **Live demo:** https://huggingface.co/spaces/Lihhan/banking77-intent-router. Both models run in the browser, so no install is needed. The first visit downloads the 300 MB fp16 ModernBERT, which the browser then caches. It has a "Challenging cases" panel (confident error, keyword-free paraphrases, adjacent transfer intents, out-of-scope) that shows the expected intent. A backup recording is in [`demo/demo_video.mp4`](demo/demo_video.mp4) (1.5 min).
