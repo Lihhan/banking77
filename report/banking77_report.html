@@ -1,0 +1,428 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>BANKING77 Routing Results</title>
+<meta name="lihanandxizi:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: one 880px reading column of report sections; charts and tables sit full-column inside each section. */
+:root {
+  --bg: #f5f6f8; --surface: #ffffff; --fg: #14171c; --muted: #5a6170; --faint: #8a91a0; --line: #e0e4ea;
+  --accent: #2a78d6; --s-bert: #2a78d6; --s-tfidf: #eb6834; --seq-0: #eef4fc; --seq-1: #2a78d6;
+  --good: #1d7a43; --warn: #a3620a; --good-bg: #e6f4ec; --warn-bg: #fbf0dc;
+  --f-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111317; --surface: #191c21; --fg: #eceef2; --muted: #a4abb8; --faint: #7b8392; --line: #2c3139;
+  --accent: #3987e5; --s-bert: #3987e5; --s-tfidf: #d95926; --seq-0: #1c2533; --seq-1: #3987e5;
+  --good: #5cc98a; --warn: #e3a64a; --good-bg: #16291e; --warn-bg: #2e2412; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111317; --surface: #191c21; --fg: #eceef2; --muted: #a4abb8; --faint: #7b8392; --line: #2c3139;
+  --accent: #3987e5; --s-bert: #3987e5; --s-tfidf: #d95926; --seq-0: #1c2533; --seq-1: #3987e5;
+  --good: #5cc98a; --warn: #e3a64a; --good-bg: #16291e; --warn-bg: #2e2412; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--fg); font: 15px/1.6 var(--f-body); }
+.wrap { max-width: 880px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 5vw, 40px); letter-spacing: -0.01em; }
+h2 { font-size: 22px; }
+h3 { font-size: 16px; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 12px/1.4 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+section { display: grid; gap: 18px; min-width: 0; }
+.lede { color: var(--muted); font-size: 16px; }
+code, .mono { font-family: var(--f-mono); font-size: .88em; }
+.intent { font-family: var(--f-mono); font-size: 12.5px; overflow-wrap: anywhere; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+header { display: grid; gap: 14px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.tile .v { font: 600 28px/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.tile .k { font-size: 13px; color: var(--muted); }
+.tile .d { font-size: 12.5px; color: var(--faint); }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.scroll { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 500; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
+tr.hl td { font-weight: 600; }
+tbody tr:last-child td { border-bottom: 0; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.sw.bert { background: var(--s-bert); } .sw.tfidf { background: var(--s-tfidf); }
+
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--muted); font: 11px var(--f-body); font-variant-numeric: tabular-nums; }
+.grid-l { stroke: var(--line); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 12.5px; line-height: 1.45;
+  padding: 8px 10px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 12px)); z-index: 5; }
+.tip b { font-weight: 600; }
+
+.db { display: grid; gap: 2px; }
+.db-axis, .db-row { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr) 52px; gap: 12px; align-items: center; }
+@media (max-width: 560px) { .db-axis, .db-row { grid-template-columns: minmax(0, 130px) minmax(0, 1fr) 44px; } }
+.db-row { padding: 3px 0; border-radius: 4px; cursor: default; }
+.db-row:hover, .db-row:focus-visible { background: var(--bg); outline: none; }
+.db-track { position: relative; height: 18px; }
+.db-track .ln { position: absolute; top: 8px; height: 2px; background: var(--line); }
+.db-track .dot { position: absolute; top: 4px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); }
+.db-track .dot.bert { background: var(--s-bert); } .db-track .dot.tfidf { background: var(--s-tfidf); }
+.db-axis .ticks { position: relative; height: 16px; font-size: 11px; color: var(--faint); }
+.db-axis .ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.db-row .val { text-align: right; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+
+.hbar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(80px, 34%) 28px; gap: 12px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--line); }
+.hbar:last-child { border-bottom: 0; }
+.hbar .bar { height: 10px; border-radius: 0 4px 4px 0; background: var(--s-bert); }
+.hbar .n { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; }
+.arrow { color: var(--faint); padding: 0 4px; }
+
+button, .chip { font: 500 13px var(--f-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+button:hover, .chip:hover { border-color: var(--faint); }
+button:focus-visible, .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.pill { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { color: var(--good); background: var(--good-bg); } .pill.no { color: var(--warn); background: var(--warn-bg); }
+
+.heat td.cell { text-align: center; font-variant-numeric: tabular-nums; border: 2px solid var(--surface); }
+.heat td.sel { outline: 2px solid var(--fg); outline-offset: -3px; font-weight: 600; }
+
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 720px) { .two { grid-template-columns: minmax(0, 1fr); } }
+ul.notes { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 72ch; }
+footer { color: var(--faint); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: no-preference) { .db-row, .chip { transition: background .15s, border-color .15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Accelerated Computational Linguistics · FA26 · Course project results</div>
+    <h1>Routing banking questions with fine-grained intent classification</h1>
+    <p class="lede">BANKING77 (77 intents). This page compares a TF–IDF + logistic-regression baseline with fine-tuned ModernBERT-base on the untouched official test split, and checks how a confidence-based review prompt trades coverage for accuracy.</p>
+    <div class="meta"><span>Team: Lihan Li, Xizi Luo</span><span>Run date: 13 Nov 2026</span><span>GPU: RTX PRO 6000 Blackwell</span><span>Test set: 3,080 queries, 40 per intent</span></div>
+  </header>
+
+  <section>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section id="main">
+    <div class="eyebrow">Week 4 · Official test evaluation</div>
+    <h2>ModernBERT beats the baseline on every metric</h2>
+    <p>Both models were selected on validation only; test predictions were never used for any selection and were scored once, in <code>evaluate.py</code>. The overlap-free rows drop the 7 test texts that also appear in training; scores barely move, because both models classify all 7 correctly.</p>
+    <div class="panel"><div class="scroll"><table id="mainTable"></table></div>
+      <p class="small muted" id="ciNote"></p></div>
+    <div class="two">
+      <div class="panel">
+        <h3>Seed robustness (ModernBERT)</h3>
+        <div class="scroll"><table id="seedTable"></table></div>
+        <p class="small muted">Seed 42 was fixed as the primary run before testing. It is the lowest of the three.</p>
+      </div>
+      <div class="panel">
+        <h3>Paired comparison</h3>
+        <div class="scroll"><table id="mcTable"></table></div>
+        <p class="small muted">Exact McNemar test on the 3,080 paired test predictions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="selective">
+    <div class="eyebrow">Confidence-based review</div>
+    <h2>Fewer review prompts at the same accuracy</h2>
+    <p>Queries whose top softmax score falls below a threshold τ get a “please review” prompt. τ is the lowest value that reaches 98% selective accuracy on validation. Coverage is the share routed automatically. Hover the chart to read any operating point.</p>
+    <div class="panel">
+      <div class="legend"><span><i class="sw bert"></i>ModernBERT-base</span><span><i class="sw tfidf"></i>TF–IDF + LogReg</span><span class="muted">Ringed dot = validation-selected τ</span></div>
+      <div class="chart" id="rcChart"></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>Selective accuracy at matched coverage</h3><div class="scroll"><table id="matchedTable"></table></div></div>
+      <div class="panel"><h3>At the selected τ (test)</h3><div class="scroll"><table id="tauTable"></table></div>
+        <p class="small muted">Scores are uncalibrated ranking cues, not probabilities.</p></div>
+    </div>
+  </section>
+
+  <section id="perclass">
+    <div class="eyebrow">Per-intent results</div>
+    <h2>The weak spots are transfer-status intents</h2>
+    <p>Per-intent test F1, sorted by ModernBERT. The lowest intents are neighbours: pending, failed and unreceived transfers, and balances that have not updated. Low training support is not the driver; <span class="intent">contactless_not_working</span> has only 35 training examples and reaches F1 0.97.</p>
+    <div class="panel">
+      <div class="legend"><span><i class="sw bert"></i>ModernBERT-base</span><span><i class="sw tfidf"></i>TF–IDF + LogReg</span><span class="muted">Value column = ModernBERT F1</span></div>
+      <div class="chart db" id="dbChart"></div>
+      <div><button id="dbToggle" type="button" aria-expanded="false">Show all 77 intents</button></div>
+    </div>
+    <div class="panel">
+      <h3>Most frequent ModernBERT confusions</h3>
+      <div id="confList"></div>
+    </div>
+  </section>
+
+  <section id="errors">
+    <div class="eyebrow">Qualitative error analysis</div>
+    <h2>30 random ModernBERT errors, coded by cause</h2>
+    <p>The sample is 30 of the 204 test errors, drawn with seed 42. For 22 of these 30, the gold intent is still in the top 3 the demo would show. Across all 204 errors the figure is 78%. Codes follow a written decision order (<code>results/error_codebook.md</code>). In 10 of the 30, the prediction fits the text at least as well as the gold label, so some test “errors” are label noise. Only 3 come from a single misleading word. </p>
+    <div class="panel"><div id="codeBars"></div></div>
+    <div class="panel">
+      <div class="chips" id="codeChips" role="group" aria-label="Filter errors by cause"></div>
+      <div class="scroll"><table id="errTable"></table></div>
+    </div>
+  </section>
+
+  <section id="pipeline">
+    <div class="eyebrow">Weeks 1–3 · Data and training</div>
+    <h2>How the models were built</h2>
+    <div class="two">
+      <div class="panel"><h3>Data audit</h3><div class="scroll"><table id="auditTable"></table></div></div>
+      <div class="panel"><h3>Resources</h3><div class="scroll"><table id="resTable"></table></div></div>
+    </div>
+    <div class="panel">
+      <h3>TF–IDF grid: validation macro-F1</h3>
+      <p class="small muted">The 16 configurations were declared before any results were seen. Every model uses class-weighted logistic regression with char_wb n-grams. The outlined cell is the selected configuration.</p>
+      <div class="scroll"><table class="heat" id="gridTable"></table></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>ModernBERT learning-rate check (seed 42)</h3><div class="scroll"><table id="lrTable"></table></div>
+        <p class="small muted">bf16, max_len 128, batch 16 × accum 2, AdamW (wd 0.01), 10% warm-up, fixed 3 epochs, best epoch kept by validation macro-F1 (not early stopping). The selected lr 8e-5 is the largest value tried.</p></div>
+      <div class="panel"><h3>Validation macro-F1 by epoch (lr 8e-5)</h3><div class="scroll"><table id="epTable"></table></div>
+        <p class="small muted">Still rising at epoch 3, so the model is probably under-trained. The proposal's 3-epoch cap was kept; longer training was not tested.</p></div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="eyebrow">Week 5 · Interactive demo</div>
+    <h2>Demo checks on 15 fixed queries</h2>
+    <p>The demo (<a href="https://huggingface.co/spaces/Lihhan/banking77-intent-router">hosted Space</a>, both models running in the browser; the Streamlit app <code>src/app.py</code> is the local version) shows the top-3 intents, a review prompt under τ, and a plain-language gloss for the selected intent. Fourteen queries are hand-written. The first, the proposal's example, is also a training text. A tick means the gold intent is in the displayed top 3.</p>
+    <div class="panel"><div class="scroll"><table id="demoTable"></table></div></div>
+  </section>
+
+  <section id="notes">
+    <div class="eyebrow">Scope</div>
+    <h2>Limits and deviations from the proposal</h2>
+    <ul class="notes">
+      <li>The proposal did not define how to choose τ. The rule used here is the lowest threshold with ≥ 98% selective accuracy on validation.</li>
+      <li>The proposal said “early stopping”. The code trains a fixed 3 epochs and keeps the best one. Every run chose epoch 3, and validation was still rising, so more epochs might help.</li>
+      <li>Only the learning rate was tuned for ModernBERT (3 settings). Two selected values sit at the edge of their search ranges: lr 8e-5 and TF–IDF C = 30.</li>
+      <li>The demo is a static Hugging Face Space with both models in the browser (fp16 ONNX ModernBERT, a JavaScript port of the TF–IDF model). Free Spaces no longer run Docker or Streamlit servers.</li>
+      <li>Scores are overconfident at times. In one demo query ModernBERT gave 1.00 to the wrong intent.</li>
+      <li>BANKING77 is English, single-domain and has no out-of-scope class. The review prompt is an uncertainty cue, not an out-of-scope detector. Nothing here supports a claim of deployment readiness.</li>
+      <li>Casanueva et al. (2020) report 93.66% for BERT-large and 93.36% for USE+ConveRT. These are reference points only, because the setups differ.</li>
+    </ul>
+  </section>
+
+  <footer>Source: PolyAI BANKING77 (CC BY 4.0). Every number on this page comes from the project's <code>results/</code> files. A routing aid for support exploration only, not financial advice.</footer>
+</div>
+
+<script type="application/json" id="data">{"audit":{"sha256":{"train.csv":"b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b","test.csv":"d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d"},"rows":{"train":10003,"test":3080},"n_labels":{"train":77,"test":77,"categories.json":77},"labels_match_categories_json":true,"empty_fields":0,"word_len":{"train":{"mean":11.99,"median":10.0,"max":79},"test":{"mean":11.0,"median":9.0,"max":69}},"train_support":{"min":35,"min_label":"contactless_not_working","max":187,"max_label":"card_payment_fee_charged"},"test_support_unique":[40],"repeated_texts":{"train":4,"test":1},"train_label_conflicts_in_dups":0,"train_test_overlap":7,"overlap_same_label":true,"overlap_texts":[{"text":"At which ATMs can I use this card?","train_labels":["atm_support"],"test_labels":["atm_support"]},{"text":"How do I unblock my PIN?","train_labels":["pin_blocked"],"test_labels":["pin_blocked"]},{"text":"I don't live in the UK. Can I still get a card?","train_labels":["country_support"],"test_labels":["country_support"]},{"text":"There are a few transaction that I don't recognize, I think someone managed to get my card details and use it.","train_labels":["compromised_card"],"test_labels":["compromised_card"]},{"text":"What businesses accept this card?","train_labels":["card_acceptance"],"test_labels":["card_acceptance"]},{"text":"Where can I use my card?","train_labels":["card_acceptance"],"test_labels":["card_acceptance"]},{"text":"Which cash machines will allow me to change my PIN?","train_labels":["change_pin"],"test_labels":["change_pin"]}],"split":{"pool":9992,"train":8992,"val":1000,"val_min_per_class":3,"test_full":3080,"test_overlap_free":3073}},"main":[{"model":"TF-IDF + LogReg","subset":"full official test","n":3080,"accuracy":0.914,"macro_f1":0.914,"top3_accuracy":0.9795,"threshold":0.81,"coverage":0.7643,"selective_accuracy":0.986,"n_flagged":726,"errors_caught":232,"errors_total":265},{"model":"TF-IDF + LogReg","subset":"overlap-free test","n":3073,"accuracy":0.9138,"macro_f1":0.9137,"top3_accuracy":0.9795,"threshold":0.81,"coverage":0.7637,"selective_accuracy":0.9859,"n_flagged":726,"errors_caught":232,"errors_total":265},{"model":"TF-IDF + LogReg","subset":"validation","n":1000,"accuracy":0.897,"macro_f1":0.8972,"top3_accuracy":0.968,"threshold":0.81,"coverage":0.75,"selective_accuracy":0.9813,"n_flagged":250,"errors_caught":89,"errors_total":103},{"model":"ModernBERT-base","subset":"full official test","n":3080,"accuracy":0.9338,"macro_f1":0.934,"top3_accuracy":0.9857,"threshold":0.96,"coverage":0.8383,"selective_accuracy":0.9876,"n_flagged":498,"errors_caught":172,"errors_total":204},{"model":"ModernBERT-base","subset":"overlap-free test","n":3073,"accuracy":0.9336,"macro_f1":0.9338,"top3_accuracy":0.9857,"threshold":0.96,"coverage":0.8379,"selective_accuracy":0.9876,"n_flagged":498,"errors_caught":172,"errors_total":204},{"model":"ModernBERT-base","subset":"validation","n":1000,"accuracy":0.921,"macro_f1":0.9244,"top3_accuracy":0.98,"threshold":0.96,"coverage":0.83,"selective_accuracy":0.9807,"n_flagged":170,"errors_caught":63,"errors_total":79}],"ci":{"TF-IDF + LogReg":{"acc":[0.9038961038961039,0.924025974025974],"f1":[0.9031725935492719,0.9228968241453412]},"ModernBERT-base":{"acc":[0.925,0.9418831168831169],"f1":[0.924388328724455,0.9412383957620991]}},"seeds":[{"seed":42,"n":3080,"accuracy":0.9338,"macro_f1":0.934,"top3_accuracy":0.9857},{"seed":13,"n":3080,"accuracy":0.9364,"macro_f1":0.9364,"top3_accuracy":0.9844},{"seed":7,"n":3080,"accuracy":0.9393,"macro_f1":0.9394,"top3_accuracy":0.9821}],"matched":[{"coverage":0.8,"ModernBERT-base":0.9907,"TF-IDF + LogReg":0.9838},{"coverage":0.9,"ModernBERT-base":0.9769,"TF-IDF + LogReg":0.9614},{"coverage":0.95,"ModernBERT-base":0.9614,"TF-IDF + LogReg":0.9395},{"coverage":1.0,"ModernBERT-base":0.9338,"TF-IDF + LogReg":0.914}],"rc_tfidf":[[0.0,1.0,0.914],[0.01,1.0,0.914],[0.02,1.0,0.914],[0.03,1.0,0.914],[0.04,1.0,0.914],[0.05,1.0,0.914],[0.06,1.0,0.914],[0.07,0.9997,0.9143],[0.08,0.9997,0.9143],[0.09,0.9997,0.9143],[0.1,0.9997,0.9143],[0.11,0.9997,0.9143],[0.12,0.9997,0.9143],[0.13,0.9994,0.9146],[0.14,0.9987,0.9151],[0.15,0.9974,0.9154],[0.16,0.9955,0.9168],[0.17,0.9945,0.9171],[0.18,0.9942,0.9174],[0.19,0.9932,0.9179],[0.2,0.9919,0.9191],[0.21,0.9893,0.9199],[0.22,0.9877,0.9208],[0.23,0.986,0.922],[0.24,0.9831,0.924],[0.25,0.9831,0.924],[0.26,0.9812,0.9249],[0.27,0.9799,0.9258],[0.28,0.9769,0.9279],[0.29,0.975,0.9291],[0.3,0.9718,0.9302],[0.31,0.9701,0.9311],[0.32,0.9662,0.9331],[0.33,0.9646,0.933],[0.34,0.9623,0.9339],[0.35,0.9578,0.9349],[0.36,0.9545,0.9371],[0.37,0.9526,0.9383],[0.38,0.9503,0.9395],[0.39,0.9464,0.9417],[0.4,0.9419,0.9442],[0.41,0.9396,0.9447],[0.42,0.937,0.9456],[0.43,0.9354,0.9465],[0.44,0.9331,0.9468],[0.45,0.9295,0.9483],[0.46,0.926,0.9495],[0.47,0.9224,0.9514],[0.48,0.9192,0.9523],[0.49,0.9143,0.9545],[0.5,0.912,0.9555],[0.51,0.9088,0.9568],[0.52,0.9039,0.9591],[0.53,0.9006,0.9611],[0.54,0.8958,0.9623],[0.55,0.8925,0.9629],[0.56,0.8886,0.9635],[0.57,0.8851,0.9644],[0.58,0.8805,0.9661],[0.59,0.8792,0.9664],[0.6,0.8747,0.9666],[0.61,0.8692,0.9682],[0.62,0.8643,0.9688],[0.63,0.861,0.9691],[0.64,0.8568,0.9712],[0.65,0.8523,0.9726],[0.66,0.8487,0.9732],[0.67,0.8425,0.9742],[0.68,0.8393,0.9756],[0.69,0.8351,0.9763],[0.7,0.8305,0.9773],[0.71,0.8266,0.9784],[0.72,0.8198,0.9802],[0.73,0.8143,0.9809],[0.74,0.8081,0.9815],[0.75,0.8039,0.9826],[0.76,0.7977,0.9837],[0.77,0.7929,0.9844],[0.78,0.788,0.9848],[0.79,0.7795,0.9846],[0.8,0.7718,0.9849],[0.81,0.7643,0.986],[0.82,0.7555,0.9871],[0.83,0.7477,0.9874],[0.84,0.7383,0.9881],[0.85,0.7295,0.9889],[0.86,0.7192,0.9892],[0.87,0.7052,0.9903],[0.88,0.6971,0.9902],[0.89,0.6815,0.9914],[0.9,0.6698,0.9918],[0.91,0.6497,0.992],[0.92,0.6308,0.9923],[0.93,0.612,0.9931],[0.94,0.5867,0.9934],[0.95,0.5584,0.9936],[0.96,0.5234,0.995],[0.97,0.4789,0.9953],[0.98,0.4094,0.996],[0.99,0.2864,0.9977],[1.0,0.0,null]],"rc_bert":[[0.0,1.0,0.9338],[0.01,1.0,0.9338],[0.02,1.0,0.9338],[0.03,1.0,0.9338],[0.04,1.0,0.9338],[0.05,1.0,0.9338],[0.06,1.0,0.9338],[0.07,1.0,0.9338],[0.08,1.0,0.9338],[0.09,1.0,0.9338],[0.1,1.0,0.9338],[0.11,1.0,0.9338],[0.12,1.0,0.9338],[0.13,1.0,0.9338],[0.14,1.0,0.9338],[0.15,1.0,0.9338],[0.16,0.9997,0.9341],[0.17,0.9997,0.9341],[0.18,0.9994,0.9344],[0.19,0.9994,0.9344],[0.2,0.9994,0.9344],[0.21,0.9994,0.9344],[0.22,0.9994,0.9344],[0.23,0.9994,0.9344],[0.24,0.9994,0.9344],[0.25,0.999,0.9347],[0.26,0.9984,0.9353],[0.27,0.9977,0.9356],[0.28,0.9968,0.9362],[0.29,0.9968,0.9362],[0.3,0.9968,0.9362],[0.31,0.9964,0.9365],[0.32,0.9958,0.9367],[0.33,0.9945,0.9376],[0.34,0.9945,0.9376],[0.35,0.9938,0.9383],[0.36,0.9935,0.9386],[0.37,0.9922,0.9391],[0.38,0.9912,0.9401],[0.39,0.9906,0.9407],[0.4,0.9899,0.9413],[0.41,0.9899,0.9413],[0.42,0.9896,0.9413],[0.43,0.9886,0.9422],[0.44,0.988,0.9428],[0.45,0.9873,0.9428],[0.46,0.9854,0.944],[0.47,0.9844,0.9443],[0.48,0.9828,0.9455],[0.49,0.9815,0.9457],[0.5,0.9802,0.9463],[0.51,0.9786,0.9469],[0.52,0.9769,0.9478],[0.53,0.9756,0.9484],[0.54,0.9734,0.9496],[0.55,0.9705,0.9518],[0.56,0.9682,0.9527],[0.57,0.9662,0.954],[0.58,0.9649,0.9546],[0.59,0.9643,0.9552],[0.6,0.9617,0.9561],[0.61,0.9601,0.9571],[0.62,0.9581,0.9576],[0.63,0.9565,0.9582],[0.64,0.9532,0.9601],[0.65,0.9523,0.9608],[0.66,0.9503,0.9611],[0.67,0.9481,0.9623],[0.68,0.9471,0.9623],[0.69,0.9458,0.9626],[0.7,0.9442,0.9632],[0.71,0.9429,0.9635],[0.72,0.9399,0.9648],[0.73,0.9364,0.9653],[0.74,0.9354,0.966],[0.75,0.9338,0.9666],[0.76,0.9331,0.9669],[0.77,0.9315,0.9672],[0.78,0.9282,0.9685],[0.79,0.9256,0.9691],[0.8,0.9224,0.9704],[0.81,0.9192,0.971],[0.82,0.9166,0.9724],[0.83,0.9123,0.973],[0.84,0.9088,0.9736],[0.85,0.9062,0.9742],[0.86,0.9023,0.9763],[0.87,0.8997,0.9769],[0.88,0.8951,0.9775],[0.89,0.8932,0.9782],[0.9,0.8873,0.9802],[0.91,0.8834,0.9805],[0.92,0.8769,0.983],[0.93,0.8705,0.9843],[0.94,0.861,0.9853],[0.95,0.8516,0.9859],[0.96,0.8383,0.9876],[0.97,0.8234,0.9894],[0.98,0.7925,0.9906],[0.99,0.7451,0.9922],[1.0,0.0,null]],"perclass":[{"intent":"Refund_not_showing_up","bert":0.975,"tfidf":0.974,"bp":0.975,"br":0.975,"n":146},{"intent":"activate_my_card","bert":0.987,"tfidf":0.95,"bp":1.0,"br":0.975,"n":143},{"intent":"age_limit","bert":1.0,"tfidf":1.0,"bp":1.0,"br":1.0,"n":99},{"intent":"apple_pay_or_google_pay","bert":1.0,"tfidf":1.0,"bp":1.0,"br":1.0,"n":113},{"intent":"atm_support","bert":1.0,"tfidf":0.951,"bp":1.0,"br":1.0,"n":77},{"intent":"automatic_top_up","bert":0.947,"tfidf":0.949,"bp":1.0,"br":0.9,"n":114},{"intent":"balance_not_updated_after_bank_transfer","bert":0.75,"tfidf":0.756,"bp":0.688,"br":0.825,"n":154},{"intent":"balance_not_updated_after_cheque_or_cash_deposit","bert":0.923,"tfidf":0.938,"bp":0.947,"br":0.9,"n":163},{"intent":"beneficiary_not_allowed","bert":0.921,"tfidf":0.935,"bp":0.972,"br":0.875,"n":140},{"intent":"cancel_transfer","bert":0.961,"tfidf":0.949,"bp":1.0,"br":0.925,"n":141},{"intent":"card_about_to_expire","bert":0.988,"tfidf":0.987,"bp":0.976,"br":1.0,"n":116},{"intent":"card_acceptance","bert":0.949,"tfidf":0.9,"bp":0.974,"br":0.925,"n":51},{"intent":"card_arrival","bert":0.914,"tfidf":0.889,"bp":0.902,"br":0.925,"n":138},{"intent":"card_delivery_estimate","bert":0.909,"tfidf":0.9,"bp":0.946,"br":0.875,"n":101},{"intent":"card_linking","bert":0.987,"tfidf":0.963,"bp":1.0,"br":0.975,"n":125},{"intent":"card_not_working","bert":0.892,"tfidf":0.828,"bp":0.86,"br":0.925,"n":100},{"intent":"card_payment_fee_charged","bert":0.905,"tfidf":0.923,"bp":0.864,"br":0.95,"n":168},{"intent":"card_payment_not_recognised","bert":0.872,"tfidf":0.875,"bp":0.895,"br":0.85,"n":151},{"intent":"card_payment_wrong_exchange_rate","bert":0.937,"tfidf":0.911,"bp":0.949,"br":0.925,"n":150},{"intent":"card_swallowed","bert":0.974,"tfidf":0.935,"bp":1.0,"br":0.95,"n":55},{"intent":"cash_withdrawal_charge","bert":0.962,"tfidf":0.961,"bp":0.974,"br":0.95,"n":159},{"intent":"cash_withdrawal_not_recognised","bert":0.918,"tfidf":0.905,"bp":0.867,"br":0.975,"n":144},{"intent":"change_pin","bert":0.963,"tfidf":0.937,"bp":0.951,"br":0.975,"n":108},{"intent":"compromised_card","bert":0.9,"tfidf":0.902,"bp":0.9,"br":0.9,"n":77},{"intent":"contactless_not_working","bert":0.974,"tfidf":0.961,"bp":1.0,"br":0.95,"n":32},{"intent":"country_support","bert":0.952,"tfidf":0.929,"bp":0.909,"br":1.0,"n":115},{"intent":"declined_card_payment","bert":0.874,"tfidf":0.918,"bp":0.809,"br":0.95,"n":138},{"intent":"declined_cash_withdrawal","bert":0.963,"tfidf":0.905,"bp":0.951,"br":0.975,"n":156},{"intent":"declined_transfer","bert":0.865,"tfidf":0.865,"bp":0.941,"br":0.8,"n":120},{"intent":"direct_debit_payment_not_recognised","bert":0.911,"tfidf":0.883,"bp":0.923,"br":0.9,"n":164},{"intent":"disposable_card_limits","bert":0.938,"tfidf":0.868,"bp":0.927,"br":0.95,"n":109},{"intent":"edit_personal_details","bert":0.988,"tfidf":0.988,"bp":0.976,"br":1.0,"n":109},{"intent":"exchange_charge","bert":0.947,"tfidf":0.9,"bp":1.0,"br":0.9,"n":109},{"intent":"exchange_rate","bert":0.93,"tfidf":0.951,"bp":0.87,"br":1.0,"n":101},{"intent":"exchange_via_app","bert":0.95,"tfidf":0.905,"bp":0.95,"br":0.95,"n":106},{"intent":"extra_charge_on_statement","bert":0.914,"tfidf":0.911,"bp":0.902,"br":0.925,"n":149},{"intent":"failed_transfer","bert":0.851,"tfidf":0.824,"bp":0.787,"br":0.925,"n":123},{"intent":"fiat_currency_support","bert":0.9,"tfidf":0.877,"bp":0.9,"br":0.9,"n":113},{"intent":"get_disposable_virtual_card","bert":0.937,"tfidf":0.9,"bp":0.949,"br":0.925,"n":87},{"intent":"get_physical_card","bert":0.964,"tfidf":0.951,"bp":0.93,"br":1.0,"n":95},{"intent":"getting_spare_card","bert":0.976,"tfidf":0.937,"bp":0.952,"br":1.0,"n":116},{"intent":"getting_virtual_card","bert":0.951,"tfidf":0.884,"bp":0.929,"br":0.975,"n":88},{"intent":"lost_or_stolen_card","bert":0.905,"tfidf":0.914,"bp":0.864,"br":0.95,"n":74},{"intent":"lost_or_stolen_phone","bert":0.974,"tfidf":0.987,"bp":1.0,"br":0.95,"n":109},{"intent":"order_physical_card","bert":0.923,"tfidf":0.872,"bp":0.947,"br":0.9,"n":108},{"intent":"passcode_forgotten","bert":0.988,"tfidf":1.0,"bp":0.976,"br":1.0,"n":94},{"intent":"pending_card_payment","bert":0.923,"tfidf":0.925,"bp":0.947,"br":0.9,"n":143},{"intent":"pending_cash_withdrawal","bert":0.963,"tfidf":0.937,"bp":0.951,"br":0.975,"n":129},{"intent":"pending_top_up","bert":0.963,"tfidf":0.872,"bp":0.951,"br":0.975,"n":134},{"intent":"pending_transfer","bert":0.811,"tfidf":0.81,"bp":0.882,"br":0.75,"n":133},{"intent":"pin_blocked","bert":0.909,"tfidf":0.865,"bp":0.946,"br":0.875,"n":102},{"intent":"receiving_money","bert":0.962,"tfidf":0.937,"bp":0.974,"br":0.95,"n":86},{"intent":"request_refund","bert":0.987,"tfidf":0.905,"bp":1.0,"br":0.975,"n":152},{"intent":"reverted_card_payment?","bert":0.889,"tfidf":0.894,"bp":0.878,"br":0.9,"n":145},{"intent":"supported_cards_and_currencies","bert":0.9,"tfidf":0.941,"bp":0.9,"br":0.9,"n":116},{"intent":"terminate_account","bert":0.976,"tfidf":0.988,"bp":0.952,"br":1.0,"n":97},{"intent":"top_up_by_bank_transfer_charge","bert":0.937,"tfidf":0.897,"bp":0.949,"br":0.925,"n":100},{"intent":"top_up_by_card_charge","bert":0.949,"tfidf":0.976,"bp":0.974,"br":0.925,"n":103},{"intent":"top_up_by_cash_or_cheque","bert":0.951,"tfidf":0.937,"bp":0.929,"br":0.975,"n":103},{"intent":"top_up_failed","bert":0.875,"tfidf":0.78,"bp":0.875,"br":0.875,"n":130},{"intent":"top_up_limits","bert":0.976,"tfidf":0.938,"bp":0.952,"br":1.0,"n":87},{"intent":"top_up_reverted","bert":0.9,"tfidf":0.868,"bp":0.9,"br":0.9,"n":131},{"intent":"topping_up_by_card","bert":0.857,"tfidf":0.857,"bp":0.892,"br":0.825,"n":93},{"intent":"transaction_charged_twice","bert":0.976,"tfidf":0.952,"bp":0.952,"br":1.0,"n":157},{"intent":"transfer_fee_charged","bert":0.975,"tfidf":0.963,"bp":0.975,"br":0.975,"n":155},{"intent":"transfer_into_account","bert":0.864,"tfidf":0.889,"bp":0.854,"br":0.875,"n":102},{"intent":"transfer_not_received_by_recipient","bert":0.85,"tfidf":0.886,"bp":0.85,"br":0.85,"n":154},{"intent":"transfer_timing","bert":0.911,"tfidf":0.886,"bp":0.923,"br":0.9,"n":115},{"intent":"unable_to_verify_identity","bert":0.935,"tfidf":0.864,"bp":0.973,"br":0.9,"n":92},{"intent":"verify_my_identity","bert":0.892,"tfidf":0.831,"bp":0.86,"br":0.925,"n":94},{"intent":"verify_source_of_funds","bert":0.988,"tfidf":0.964,"bp":0.976,"br":1.0,"n":102},{"intent":"verify_top_up","bert":1.0,"tfidf":0.988,"bp":1.0,"br":1.0,"n":113},{"intent":"virtual_card_not_working","bert":0.933,"tfidf":0.919,"bp":1.0,"br":0.875,"n":37},{"intent":"visa_or_mastercard","bert":0.947,"tfidf":0.949,"bp":1.0,"br":0.9,"n":121},{"intent":"why_verify_identity","bert":0.937,"tfidf":0.815,"bp":0.949,"br":0.925,"n":109},{"intent":"wrong_amount_of_cash_received","bert":0.935,"tfidf":0.923,"bp":0.973,"br":0.9,"n":162},{"intent":"wrong_exchange_rate_for_cash_withdrawal","bert":0.938,"tfidf":0.872,"bp":0.927,"br":0.95,"n":147}],"grid":[{"word_ngram":"(1, 1)","char_ngram":"(2, 4)","C":1,"val_accuracy":0.873,"val_macro_f1":0.8705,"val_top3_accuracy":0.964,"fit_s":8.9},{"word_ngram":"(1, 1)","char_ngram":"(2, 4)","C":3,"val_accuracy":0.882,"val_macro_f1":0.8812,"val_top3_accuracy":0.97,"fit_s":10.5},{"word_ngram":"(1, 1)","char_ngram":"(2, 4)","C":10,"val_accuracy":0.888,"val_macro_f1":0.8865,"val_top3_accuracy":0.969,"fit_s":12.2},{"word_ngram":"(1, 1)","char_ngram":"(2, 4)","C":30,"val_accuracy":0.885,"val_macro_f1":0.8855,"val_top3_accuracy":0.967,"fit_s":14.9},{"word_ngram":"(1, 1)","char_ngram":"(2, 5)","C":1,"val_accuracy":0.874,"val_macro_f1":0.8709,"val_top3_accuracy":0.965,"fit_s":8.9},{"word_ngram":"(1, 1)","char_ngram":"(2, 5)","C":3,"val_accuracy":0.886,"val_macro_f1":0.8841,"val_top3_accuracy":0.969,"fit_s":12.8},{"word_ngram":"(1, 1)","char_ngram":"(2, 5)","C":10,"val_accuracy":0.889,"val_macro_f1":0.887,"val_top3_accuracy":0.969,"fit_s":15.9},{"word_ngram":"(1, 1)","char_ngram":"(2, 5)","C":30,"val_accuracy":0.89,"val_macro_f1":0.8892,"val_top3_accuracy":0.97,"fit_s":19.0},{"word_ngram":"(1, 2)","char_ngram":"(2, 4)","C":1,"val_accuracy":0.885,"val_macro_f1":0.8853,"val_top3_accuracy":0.962,"fit_s":10.9},{"word_ngram":"(1, 2)","char_ngram":"(2, 4)","C":3,"val_accuracy":0.891,"val_macro_f1":0.8885,"val_top3_accuracy":0.968,"fit_s":16.7},{"word_ngram":"(1, 2)","char_ngram":"(2, 4)","C":10,"val_accuracy":0.896,"val_macro_f1":0.8958,"val_top3_accuracy":0.969,"fit_s":14.3},{"word_ngram":"(1, 2)","char_ngram":"(2, 4)","C":30,"val_accuracy":0.897,"val_macro_f1":0.8972,"val_top3_accuracy":0.968,"fit_s":19.9},{"word_ngram":"(1, 2)","char_ngram":"(2, 5)","C":1,"val_accuracy":0.881,"val_macro_f1":0.8792,"val_top3_accuracy":0.962,"fit_s":15.8},{"word_ngram":"(1, 2)","char_ngram":"(2, 5)","C":3,"val_accuracy":0.891,"val_macro_f1":0.8881,"val_top3_accuracy":0.969,"fit_s":17.1},{"word_ngram":"(1, 2)","char_ngram":"(2, 5)","C":10,"val_accuracy":0.896,"val_macro_f1":0.8937,"val_top3_accuracy":0.972,"fit_s":20.2},{"word_ngram":"(1, 2)","char_ngram":"(2, 5)","C":30,"val_accuracy":0.894,"val_macro_f1":0.8923,"val_top3_accuracy":0.971,"fit_s":24.5}],"lr":[{"lr":"3e-05","val_accuracy":0.906,"val_macro_f1":0.9082,"val_top3_accuracy":0.968},{"lr":"5e-05","val_accuracy":0.92,"val_macro_f1":0.9235,"val_top3_accuracy":0.971},{"lr":"8e-05","val_accuracy":0.921,"val_macro_f1":0.9244,"val_top3_accuracy":0.98}],"epochs":{"42":[{"epoch":1,"step":281,"val_accuracy":0.879,"val_macro_f1":0.8816761688821878,"val_top3_accuracy":0.969},{"epoch":2,"step":562,"val_accuracy":0.905,"val_macro_f1":0.9085275550745162,"val_top3_accuracy":0.965},{"epoch":3,"step":843,"val_accuracy":0.921,"val_macro_f1":0.9244496340913217,"val_top3_accuracy":0.98}],"13":[{"epoch":1,"step":281,"val_accuracy":0.869,"val_macro_f1":0.8718412811527098,"val_top3_accuracy":0.966},{"epoch":2,"step":562,"val_accuracy":0.914,"val_macro_f1":0.9183881417772145,"val_top3_accuracy":0.969},{"epoch":3,"step":843,"val_accuracy":0.916,"val_macro_f1":0.9192161616952614,"val_top3_accuracy":0.975}],"7":[{"epoch":1,"step":281,"val_accuracy":0.888,"val_macro_f1":0.8905332880727,"val_top3_accuracy":0.971},{"epoch":2,"step":562,"val_accuracy":0.91,"val_macro_f1":0.910841991280025,"val_top3_accuracy":0.973},{"epoch":3,"step":843,"val_accuracy":0.927,"val_macro_f1":0.9301452082524883,"val_top3_accuracy":0.972}]},"pilot":{"args":{"lr":5e-05,"epochs":3,"bs":16,"accum":2,"max_len":128,"seed":42,"pilot":100,"tag":null,"save_model":false},"gpu":"NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition","steps":100,"peak_alloc_GB":3.5,"median_step_s":0.0936,"wall_s":27.0,"epoch_log":[],"steps_per_epoch":281,"extrapolated_3ep_train_min":1.32},"summary":{"mcnemar":{"bert_right_tfidf_wrong":121,"tfidf_right_bert_wrong":60,"p_value":6.789517574182644e-06},"thresholds":{"TF-IDF + LogReg":0.81,"ModernBERT-base":0.96},"top_confusions::TF-IDF + LogReg":[["verify_my_identity","why_verify_identity",5],["pending_top_up","top_up_failed",5],["why_verify_identity","unable_to_verify_identity",4],["unable_to_verify_identity","why_verify_identity",3],["top_up_failed","top_up_reverted",3],["top_up_reverted","top_up_failed",3],["pending_transfer","failed_transfer",3],["why_verify_identity","verify_my_identity",3],["fiat_currency_support","exchange_via_app",3],["pending_transfer","balance_not_updated_after_bank_transfer",3],["disposable_card_limits","getting_virtual_card",3],["disposable_card_limits","get_disposable_virtual_card",3]],"top_confusions::ModernBERT-base":[["pending_transfer","balance_not_updated_after_bank_transfer",6],["transfer_not_received_by_recipient","balance_not_updated_after_bank_transfer",4],["card_delivery_estimate","card_arrival",4],["top_up_failed","top_up_reverted",3],["exchange_charge","exchange_rate",3],["declined_transfer","failed_transfer",3],["why_verify_identity","verify_my_identity",3],["balance_not_updated_after_bank_transfer","transfer_timing",3],["transfer_not_received_by_recipient","failed_transfer",2],["top_up_failed","declined_card_payment",2],["supported_cards_and_currencies","fiat_currency_support",2],["top_up_by_card_charge","top_up_by_bank_transfer_charge",2]]},"errors":[{"norm":"When will I get my card?","category":"card_arrival","pred":"card_delivery_estimate","conf":0.995,"gold_rank":2,"code":"intent_pair","note":"\"When will I get my card\" fits card_arrival and card_delivery_estimate equally; the two label definitions overlap."},{"norm":"I was double charged, and the second charge is showing as \"pending\". How long will it be before I get my money back once the second charge has been refunded?","category":"pending_card_payment","pred":"transaction_charged_twice","conf":0.999,"gold_rank":9,"code":"annotation_ambiguity","note":"Text leads with \"double charged\"; predicted transaction_charged_twice fits at least as well as gold pending_card_payment."},{"norm":"Why is a money transfer not showing?","category":"pending_transfer","pred":"balance_not_updated_after_bank_transfer","conf":0.649,"gold_rank":2,"code":"missing_context","note":"Transfer direction is unstated: outgoing → pending_transfer, incoming → balance_not_updated. A human could not tell either. (close call)"},{"norm":"It's been two weeks, why has the transaction for $1.00 not been reversed?","category":"extra_charge_on_statement","pred":"reverted_card_payment?","conf":0.815,"gold_rank":2,"code":"lexical_overlap","note":"\"$1.00\" matches the dataset's extra_charge_on_statement examples (the £1/$1 charge); \"reversed\" pulls toward reverted_card_payment?. The gold label is consistent with the dataset. (close call)"},{"norm":"how long dies it take for transfers to reflect on my balance","category":"transfer_timing","pred":"balance_not_updated_after_bank_transfer","conf":0.86,"gold_rank":2,"code":"lexical_overlap","note":"\"How long does it take for transfers\" is a clear transfer_timing cue; the phrase \"reflect on my balance\" pulls toward balance_not_updated. (close call)"},{"norm":"Hi, i don't know what's going on i've just paid for my top up twice by accident can you help me get a refund please.","category":"top_up_reverted","pred":"transaction_charged_twice","conf":0.927,"gold_rank":5,"code":"annotation_ambiguity","note":"\"Paid for my top up twice … refund\" reads as transaction_charged_twice or request_refund; gold top_up_reverted is a weak fit."},{"norm":"I've tried my card a bunch of times and it never worked.","category":"card_not_working","pred":"declined_card_payment","conf":0.595,"gold_rank":2,"code":"intent_pair","note":"\"Tried my card a bunch of times, never worked\" fits card_not_working and declined_card_payment; overlapping definitions."},{"norm":"What extra charges are there?","category":"transfer_fee_charged","pred":"extra_charge_on_statement","conf":0.509,"gold_rank":3,"code":"missing_context","note":"\"What extra charges are there?\" names no transaction type; gold transfer_fee_charged is not recoverable."},{"norm":"Can I change the amount I made on a payment that I made to the payment is correct.","category":"cancel_transfer","pred":"extra_charge_on_statement","conf":0.247,"gold_rank":2,"code":"missing_context","note":"Ungrammatical; the intended action (cancel a transfer) cannot be recovered from the wording."},{"norm":"I was retrieving money and my card wouldn't remove.","category":"card_swallowed","pred":"lost_or_stolen_card","conf":0.389,"gold_rank":2,"code":"missing_context","note":"Weak fit for every code: a human can tell it is card_swallowed (\"card wouldn't remove\" while getting money), but it has no ATM/swallow keywords. Codebook gap: keyword-free paraphrase. (close call)"},{"norm":"Where is the money I pushed it's on my mobile app as being withdrawn.","category":"wrong_amount_of_cash_received","pred":"cash_withdrawal_not_recognised","conf":0.856,"gold_rank":5,"code":"missing_context","note":"Garbled (\"money I pushed … as being withdrawn\"); what went wrong is unclear."},{"norm":"Someone stole my wallet earlier today, not sure exactly when, probably on Piccadilly circus. Can you check if there were any attempts to use the card and obviously block it?","category":"lost_or_stolen_card","pred":"cash_withdrawal_not_recognised","conf":0.491,"gold_rank":3,"code":"lexical_overlap","note":"\"Stole my wallet … block it\" cues gold lost_or_stolen_card; \"attempts to use the card\" pulls toward cash_withdrawal_not_recognised."},{"norm":"Good morning. I tried to make a purchase with my credit card last night and again this morning. Both times it was declined. Can you investigate?","category":"declined_transfer","pred":"declined_card_payment","conf":0.472,"gold_rank":2,"code":"annotation_ambiguity","note":"Describes a declined credit-card purchase; prediction declined_card_payment looks correct and gold declined_transfer looks wrong."},{"norm":"WTF??? I tried to withdraw some money at a Metro bank on High St. Kensington and without any notice it disappeared in the machine. The bank was already closed so I couldn't do anything. How do I get it back?","category":"card_swallowed","pred":"pending_cash_withdrawal","conf":0.533,"gold_rank":3,"code":"missing_context","note":"In \"withdraw some money … it disappeared in the machine\", \"it\" can be the card (gold card_swallowed) or the money (prediction pending_cash_withdrawal). The referent is unclear. (close call)"},{"norm":"I was trying to use my virtual card at a merchant and it was rejected. How can I fix this?","category":"virtual_card_not_working","pred":"declined_card_payment","conf":0.895,"gold_rank":2,"code":"intent_pair","note":"A virtual card rejected at a merchant is genuinely both virtual_card_not_working and declined_card_payment; the definitions overlap, so it is not one misleading word. (close call)"},{"norm":"How do I do an international transfer?","category":"transfer_into_account","pred":"exchange_rate","conf":0.329,"gold_rank":2,"code":"annotation_ambiguity","note":"Asks how to send an international transfer; gold transfer_into_account (receiving money) is a poor fit. The prediction exchange_rate is also wrong."},{"norm":"How do I unblock my card using the app?","category":"card_not_working","pred":"pin_blocked","conf":0.989,"gold_rank":2,"code":"annotation_ambiguity","note":"Nothing cues gold card_not_working; \"unblock my card\" is closer to pin_blocked. Gold is a loose fit. (close call)"},{"norm":"Am I allowed to use any card to make a payment?","category":"visa_or_mastercard","pred":"supported_cards_and_currencies","conf":0.812,"gold_rank":6,"code":"annotation_ambiguity","note":"\"Am I allowed to use any card to make a payment?\" asks which cards are supported; prediction supported_cards_and_currencies fits better than gold visa_or_mastercard. (close call)"},{"norm":"What's with not verifying my Id?","category":"unable_to_verify_identity","pred":"why_verify_identity","conf":0.898,"gold_rank":2,"code":"intent_pair","note":"\"What's with not verifying my Id\" can mean unable_to_verify or why_verify; overlapping labels."},{"norm":"someone stole my money","category":"direct_debit_payment_not_recognised","pred":"cash_withdrawal_not_recognised","conf":0.544,"gold_rank":7,"code":"missing_context","note":"\"Someone stole my money\" does not say the channel (direct debit, card, ATM)."},{"norm":"I had a transfer blocked","category":"beneficiary_not_allowed","pred":"declined_transfer","conf":0.422,"gold_rank":4,"code":"missing_context","note":"\"I had a transfer blocked\" does not give the reason (beneficiary vs declined)."},{"norm":"What countries can I travel to and have access to their currencies?","category":"fiat_currency_support","pred":"country_support","conf":0.743,"gold_rank":4,"code":"intent_pair","note":"Asks about both countries and currencies; fiat_currency_support and country_support overlap."},{"norm":"I need to find out why my transfer didn't get there.","category":"transfer_not_received_by_recipient","pred":"failed_transfer","conf":0.754,"gold_rank":2,"code":"intent_pair","note":"\"Transfer didn't get there\" fits transfer_not_received_by_recipient and failed_transfer."},{"norm":"How can I top-up my card?","category":"top_up_by_cash_or_cheque","pred":"topping_up_by_card","conf":0.964,"gold_rank":9,"code":"annotation_ambiguity","note":"\"How can I top-up my card?\" fits topping_up_by_card at least as well as gold top_up_by_cash_or_cheque."},{"norm":"Why does my account not accept cash deposits?","category":"balance_not_updated_after_cheque_or_cash_deposit","pred":"top_up_by_cash_or_cheque","conf":0.608,"gold_rank":2,"code":"annotation_ambiguity","note":"\"Account does not accept cash deposits\" asks about depositing cash (top_up_by_cash_or_cheque); gold is about a deposit already made that has not shown up. (close call)"},{"norm":"Can I exchange currencies?","category":"fiat_currency_support","pred":"exchange_via_app","conf":0.992,"gold_rank":2,"code":"annotation_ambiguity","note":"\"Can I exchange currencies?\" matches exchange_via_app at least as well as gold fiat_currency_support. (close call)"},{"norm":"What is the base amount for cross-currency exchanges?","category":"exchange_charge","pred":"exchange_rate","conf":0.436,"gold_rank":2,"code":"intent_pair","note":"\"Base amount for cross-currency exchanges\" sits between exchange_charge and exchange_rate; overlapping labels."},{"norm":"Why can't I see the top-up amount I just added to my account?","category":"topping_up_by_card","pred":"pending_top_up","conf":0.793,"gold_rank":2,"code":"annotation_ambiguity","note":"\"Can't see the top-up amount I just added\" fits pending_top_up better than gold topping_up_by_card."},{"norm":"I've tried numerous times to submit a transfer of funds. Why isn't it going through?","category":"beneficiary_not_allowed","pred":"failed_transfer","conf":0.579,"gold_rank":2,"code":"missing_context","note":"A repeated failed transfer with no mention of the beneficiary; gold beneficiary_not_allowed is not recoverable."},{"norm":"The exchange rate seems off on this transaction","category":"card_payment_wrong_exchange_rate","pred":"wrong_exchange_rate_for_cash_withdrawal","conf":0.62,"gold_rank":2,"code":"missing_context","note":"\"Exchange rate seems off on this transaction\" does not say card payment or cash withdrawal."}],"demo":[{"model":"ModernBERT-base","text":"I am still waiting on my card?","gold":"card_arrival","top1":"card_arrival","top1_score":0.995,"top3":"card_arrival (1.00); card_delivery_estimate (0.00); lost_or_stolen_card (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"I sent money to a friend yesterday but it still hasn't arrived.","gold":"transfer_not_received_by_recipient","top1":"transfer_not_received_by_recipient","top1_score":0.996,"top3":"transfer_not_received_by_recipient (1.00); wrong_amount_of_cash_received (0.00); balance_not_updated_after_cheque_or_cash_deposit (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"My card got eaten by the cash machine at the station","gold":"card_swallowed","top1":"card_swallowed","top1_score":0.998,"top3":"card_swallowed (1.00); atm_support (0.00); topping_up_by_card (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Why did you charge me a fee for paying with my card in a shop?","gold":"card_payment_fee_charged","top1":"card_payment_fee_charged","top1_score":0.998,"top3":"card_payment_fee_charged (1.00); top_up_by_card_charge (0.00); cash_withdrawal_charge (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"I think someone has my card number, there are payments I never made","gold":"compromised_card","top1":"card_payment_not_recognised","top1_score":0.996,"top3":"card_payment_not_recognised (1.00); compromised_card (0.00); card_payment_fee_charged (0.00)","top1_correct":false,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"How do I close my account for good?","gold":"terminate_account","top1":"terminate_account","top1_score":1.0,"top3":"terminate_account (1.00); request_refund (0.00); why_verify_identity (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Tapping my card on the reader doesn't do anything anymore","gold":"contactless_not_working","top1":"card_linking","top1_score":0.444,"top3":"card_linking (0.44); lost_or_stolen_card (0.24); card_not_working (0.23)","top1_correct":false,"gold_in_top3":false,"review_prompt":true},{"model":"ModernBERT-base","text":"The ATM only gave me 50 but I asked for 100","gold":"wrong_amount_of_cash_received","top1":"wrong_amount_of_cash_received","top1_score":1.0,"top3":"wrong_amount_of_cash_received (1.00); declined_cash_withdrawal (0.00); pending_cash_withdrawal (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Can I add my card to my iPhone wallet?","gold":"apple_pay_or_google_pay","top1":"topping_up_by_card","top1_score":0.586,"top3":"topping_up_by_card (0.59); card_linking (0.34); atm_support (0.02)","top1_correct":false,"gold_in_top3":false,"review_prompt":true},{"model":"ModernBERT-base","text":"I forgot the passcode for the app","gold":"passcode_forgotten","top1":"passcode_forgotten","top1_score":1.0,"top3":"passcode_forgotten (1.00); contactless_not_working (0.00); unable_to_verify_identity (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"My top-up has been pending for hours","gold":"pending_top_up","top1":"pending_top_up","top1_score":0.999,"top3":"pending_top_up (1.00); pending_card_payment (0.00); top_up_failed (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Is my card a Visa or a Mastercard?","gold":"visa_or_mastercard","top1":"visa_or_mastercard","top1_score":1.0,"top3":"visa_or_mastercard (1.00); supported_cards_and_currencies (0.00); activate_my_card (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Why do you need to verify who I am?","gold":"why_verify_identity","top1":"why_verify_identity","top1_score":1.0,"top3":"why_verify_identity (1.00); verify_my_identity (0.00); verify_top_up (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"I lost my phone, what do I do about the app?","gold":"lost_or_stolen_phone","top1":"lost_or_stolen_phone","top1_score":1.0,"top3":"lost_or_stolen_phone (1.00); cash_withdrawal_not_recognised (0.00); card_swallowed (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"ModernBERT-base","text":"Can I hold euros and dollars in my account?","gold":"fiat_currency_support","top1":"fiat_currency_support","top1_score":0.999,"top3":"fiat_currency_support (1.00); top_up_by_cash_or_cheque (0.00); supported_cards_and_currencies (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"I am still waiting on my card?","gold":"card_arrival","top1":"card_arrival","top1_score":0.939,"top3":"card_arrival (0.94); Refund_not_showing_up (0.01); pending_cash_withdrawal (0.01)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"I sent money to a friend yesterday but it still hasn't arrived.","gold":"transfer_not_received_by_recipient","top1":"transfer_not_received_by_recipient","top1_score":0.998,"top3":"transfer_not_received_by_recipient (1.00); balance_not_updated_after_cheque_or_cash_deposit (0.00); card_arrival (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"My card got eaten by the cash machine at the station","gold":"card_swallowed","top1":"card_swallowed","top1_score":0.849,"top3":"card_swallowed (0.85); wrong_amount_of_cash_received (0.03); pending_cash_withdrawal (0.03)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Why did you charge me a fee for paying with my card in a shop?","gold":"card_payment_fee_charged","top1":"card_payment_fee_charged","top1_score":0.992,"top3":"card_payment_fee_charged (0.99); cash_withdrawal_charge (0.00); declined_card_payment (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"I think someone has my card number, there are payments I never made","gold":"compromised_card","top1":"compromised_card","top1_score":0.802,"top3":"compromised_card (0.80); card_payment_not_recognised (0.15); reverted_card_payment? (0.01)","top1_correct":true,"gold_in_top3":true,"review_prompt":true},{"model":"TF-IDF + LogReg baseline","text":"How do I close my account for good?","gold":"terminate_account","top1":"terminate_account","top1_score":0.986,"top3":"terminate_account (0.99); age_limit (0.00); transfer_into_account (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Tapping my card on the reader doesn't do anything anymore","gold":"contactless_not_working","top1":"card_not_working","top1_score":0.702,"top3":"card_not_working (0.70); card_linking (0.02); card_arrival (0.02)","top1_correct":false,"gold_in_top3":false,"review_prompt":true},{"model":"TF-IDF + LogReg baseline","text":"The ATM only gave me 50 but I asked for 100","gold":"wrong_amount_of_cash_received","top1":"wrong_amount_of_cash_received","top1_score":0.999,"top3":"wrong_amount_of_cash_received (1.00); declined_cash_withdrawal (0.00); card_swallowed (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Can I add my card to my iPhone wallet?","gold":"apple_pay_or_google_pay","top1":"topping_up_by_card","top1_score":0.782,"top3":"topping_up_by_card (0.78); card_linking (0.06); lost_or_stolen_card (0.03)","top1_correct":false,"gold_in_top3":false,"review_prompt":true},{"model":"TF-IDF + LogReg baseline","text":"I forgot the passcode for the app","gold":"passcode_forgotten","top1":"passcode_forgotten","top1_score":1.0,"top3":"passcode_forgotten (1.00); unable_to_verify_identity (0.00); lost_or_stolen_phone (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"My top-up has been pending for hours","gold":"pending_top_up","top1":"pending_top_up","top1_score":0.988,"top3":"pending_top_up (0.99); top_up_failed (0.01); pending_card_payment (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Is my card a Visa or a Mastercard?","gold":"visa_or_mastercard","top1":"visa_or_mastercard","top1_score":1.0,"top3":"visa_or_mastercard (1.00); card_acceptance (0.00); card_arrival (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Why do you need to verify who I am?","gold":"why_verify_identity","top1":"why_verify_identity","top1_score":0.972,"top3":"why_verify_identity (0.97); verify_my_identity (0.01); verify_top_up (0.01)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"I lost my phone, what do I do about the app?","gold":"lost_or_stolen_phone","top1":"lost_or_stolen_phone","top1_score":0.998,"top3":"lost_or_stolen_phone (1.00); card_linking (0.00); lost_or_stolen_card (0.00)","top1_correct":true,"gold_in_top3":true,"review_prompt":false},{"model":"TF-IDF + LogReg baseline","text":"Can I hold euros and dollars in my account?","gold":"fiat_currency_support","top1":"fiat_currency_support","top1_score":0.828,"top3":"fiat_currency_support (0.83); transfer_timing (0.02); terminate_account (0.02)","top1_correct":true,"gold_in_top3":true,"review_prompt":false}]}</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
+  const f3 = (x) => Number(x).toFixed(3);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const I = (s) => esc(s).replace(/_/g, "_<wbr>");
+  const B = "ModernBERT-base", T = "TF-IDF + LogReg";
+  const row = (m, s) => D.main.find((r) => r.model === m && r.subset === s);
+  const bF = row(B, "full official test"), tF = row(T, "full official test");
+  const mc = D.summary.mcnemar;
+
+  // tiles
+  $("tiles").innerHTML = [
+    [pct(bF.accuracy, 2), "ModernBERT test accuracy", "TF–IDF: " + pct(tF.accuracy, 2)],
+    [f3(bF.macro_f1), "ModernBERT macro-F1", "TF–IDF: " + f3(tF.macro_f1)],
+    [pct(bF.coverage), "Auto-routed at τ", pct(bF.selective_accuracy) + " accurate · TF–IDF " + pct(tF.coverage)],
+    ["p = " + mc.p_value.toExponential(1).replace("e-", "×10⁻").replace(/⁻(\d)/, (m, d) => "⁻" + "⁰¹²³⁴⁵⁶⁷⁸⁹"[d]), "McNemar, paired", mc.bert_right_tfidf_wrong + " vs " + mc.tfidf_right_bert_wrong + " discordant"],
+  ].map(([v, k, d]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+
+  // main table
+  const subsets = ["full official test", "overlap-free test", "validation"];
+  let h = `<thead><tr><th>Model</th><th>Subset</th><th class="r">n</th><th class="r">Accuracy</th><th class="r">Macro-F1</th><th class="r">Top-3 acc</th></tr></thead><tbody>`;
+  for (const m of [T, B]) for (const s of subsets) {
+    const r = row(m, s);
+    h += `<tr class="${m === B && s !== "validation" ? "hl" : ""}"><td>${m === B ? "ModernBERT-base" : "TF–IDF + LogReg"}</td><td class="muted">${s}</td><td class="r">${r.n.toLocaleString()}</td><td class="r">${f3(r.accuracy)}</td><td class="r">${f3(r.macro_f1)}</td><td class="r">${f3(r.top3_accuracy)}</td></tr>`;
+  }
+  $("mainTable").innerHTML = h + "</tbody>";
+  const ci = (m) => D.ci[m];
+  $("ciNote").textContent = `95% bootstrap CIs on the full test set (2,000 resamples). ModernBERT: accuracy ${f3(ci(B).acc[0])}–${f3(ci(B).acc[1])}, macro-F1 ${f3(ci(B).f1[0])}–${f3(ci(B).f1[1])}. TF–IDF: accuracy ${f3(ci(T).acc[0])}–${f3(ci(T).acc[1])}, macro-F1 ${f3(ci(T).f1[0])}–${f3(ci(T).f1[1])}.`;
+
+  const sd = (a) => { const m = a.reduce((x, y) => x + y) / a.length; return [m, Math.sqrt(a.reduce((x, y) => x + (y - m) ** 2, 0) / (a.length - 1))]; };
+  const [ma, sa] = sd(D.seeds.map((s) => s.accuracy)), [mf, sf] = sd(D.seeds.map((s) => s.macro_f1));
+  $("seedTable").innerHTML = `<thead><tr><th>Seed</th><th class="r">Accuracy</th><th class="r">Macro-F1</th><th class="r">Top-3</th></tr></thead><tbody>` +
+    D.seeds.map((s) => `<tr><td class="num">${s.seed}${s.seed === 42 ? ' <span class="muted small">primary</span>' : ""}</td><td class="r">${f3(s.accuracy)}</td><td class="r">${f3(s.macro_f1)}</td><td class="r">${f3(s.top3_accuracy)}</td></tr>`).join("") +
+    `<tr class="hl"><td>Mean ± sd</td><td class="r">${f3(ma)} ± ${f3(sa)}</td><td class="r">${f3(mf)} ± ${f3(sf)}</td><td class="r"></td></tr></tbody>`;
+  $("mcTable").innerHTML = `<tbody><tr><td>ModernBERT right, TF–IDF wrong</td><td class="r">${mc.bert_right_tfidf_wrong}</td></tr><tr><td>TF–IDF right, ModernBERT wrong</td><td class="r">${mc.tfidf_right_bert_wrong}</td></tr><tr><td>Both wrong</td><td class="r">${bF.errors_total - mc.tfidf_right_bert_wrong}</td></tr><tr class="hl"><td>Exact p-value</td><td class="r">${mc.p_value.toExponential(1)}</td></tr></tbody>`;
+
+  // matched coverage + tau tables
+  $("matchedTable").innerHTML = `<thead><tr><th>Coverage</th><th class="r">ModernBERT</th><th class="r">TF–IDF</th></tr></thead><tbody>` +
+    D.matched.slice().sort((a, b) => b.coverage - a.coverage).map((r) => `<tr><td class="num">${pct(r.coverage, 0)}</td><td class="r">${pct(r[B])}</td><td class="r">${pct(r[T])}</td></tr>`).join("") + "</tbody>";
+  $("tauTable").innerHTML = `<thead><tr><th></th><th class="r">ModernBERT</th><th class="r">TF–IDF</th></tr></thead><tbody>` +
+    [["τ (from validation)", (r) => r.threshold.toFixed(2)], ["Coverage", (r) => pct(r.coverage)], ["Selective accuracy", (r) => pct(r.selective_accuracy)],
+     ["Sent to review", (r) => r.n_flagged], ["Errors caught by review", (r) => `${r.errors_caught} / ${r.errors_total}`]]
+      .map(([k, fn]) => `<tr><td>${k}</td><td class="r">${fn(bF)}</td><td class="r">${fn(tF)}</td></tr>`).join("") + "</tbody>";
+
+  // coverage vs selective accuracy chart
+  (function () {
+    const el = $("rcChart"), W = 820, H = 340, m = { l: 48, r: 16, t: 12, b: 40 };
+    const x0 = 0.25, x1 = 1, y0 = 0.91, y1 = 1.0;
+    const X = (v) => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r), Y = (v) => m.t + (y1 - v) / (y1 - y0) * (H - m.t - m.b);
+    const prep = (a) => a.filter((p) => p[1] > 0 && p[2] === p[2] && p[2] !== null).map(([t, c, s]) => ({ t, c, s }));
+    const S = [{ k: "bert", name: "ModernBERT-base", pts: prep(D.rc_bert), tau: bF.threshold },
+               { k: "tfidf", name: "TF–IDF + LogReg", pts: prep(D.rc_tfidf), tau: tF.threshold }];
+    let g = "";
+    for (let v = 0.92; v <= 1.0001; v += 0.02) g += `<line class="grid-l" x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end">${Math.round(v * 100)}%</text>`;
+    for (let v = 0.3; v <= 1.0001; v += 0.1) g += `<text x="${X(v)}" y="${H - m.b + 18}" text-anchor="middle">${Math.round(v * 100)}%</text>`;
+    g += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">Coverage (share auto-routed)</text>`;
+    g += `<text x="12" y="${(m.t + H - m.b) / 2}" text-anchor="middle" transform="rotate(-90 12 ${(m.t + H - m.b) / 2})">Selective accuracy</text>`;
+    for (const s of S) {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p.c).toFixed(1) + "," + Y(Math.max(p.s, y0)).toFixed(1)).join("");
+      g += `<path d="${d}" fill="none" stroke="var(--s-${s.k})" stroke-width="2" stroke-linejoin="round"/>`;
+      const p = s.pts.find((q) => Math.abs(q.t - s.tau) < 1e-6);
+      g += `<circle cx="${X(p.c)}" cy="${Y(p.s)}" r="6" fill="var(--s-${s.k})" stroke="var(--surface)" stroke-width="2"/><circle cx="${X(p.c)}" cy="${Y(p.s)}" r="9" fill="none" stroke="var(--s-${s.k})" stroke-width="1.5"/>`;
+      g += `<text x="${X(p.c) + (s.k === "bert" ? 12 : -12)}" y="${Y(p.s) + (s.k === "bert" ? -10 : 20)}" text-anchor="${s.k === "bert" ? "start" : "end"}" style="fill:var(--fg)">τ = ${s.tau.toFixed(2)}</text>`;
+    }
+    g += `<line id="rcX" y1="${m.t}" y2="${H - m.b}" stroke="var(--faint)" stroke-dasharray="3 3" visibility="hidden"/>`;
+    for (const s of S) g += `<circle id="rcD-${s.k}" r="5" fill="var(--s-${s.k})" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
+    g += `<rect id="rcHit" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/>`;
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Coverage versus selective accuracy for both models">${g}</svg><div class="tip" hidden id="rcTip"></div>`;
+    const svg = el.querySelector("svg"), tip = $("rcTip");
+    const near = (pts, c) => pts.reduce((a, b) => Math.abs(b.c - c) < Math.abs(a.c - c) ? b : a);
+    function move(ev) {
+      const r = svg.getBoundingClientRect(), sx = (ev.clientX - r.left) / r.width * W;
+      const c = x0 + (sx - m.l) / (W - m.l - m.r) * (x1 - x0);
+      $("rcX").setAttribute("x1", sx); $("rcX").setAttribute("x2", sx); $("rcX").setAttribute("visibility", "visible");
+      let lines = [`<b>Coverage ≈ ${pct(c, 0)}</b>`];
+      for (const s of S) {
+        const d = $("rcD-" + s.k);
+        if (c < s.pts[s.pts.length - 1].c - 0.01) { d.setAttribute("visibility", "hidden"); lines.push(`${s.name}: no τ reaches this coverage`); continue; }
+        const p = near(s.pts, c);
+        d.setAttribute("cx", X(p.c)); d.setAttribute("cy", Y(p.s)); d.setAttribute("visibility", "visible");
+        lines.push(`${s.name}: ${pct(p.s)} at ${pct(p.c)} (τ ${p.t.toFixed(2)})`);
+      }
+      tip.innerHTML = lines.join("<br>"); tip.hidden = false;
+      const er = el.getBoundingClientRect();
+      tip.style.left = Math.min(Math.max(ev.clientX - er.left, 150), er.width - 150) + "px"; tip.style.top = (ev.clientY - er.top) + "px";
+    }
+    const hit = $("rcHit");
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; $("rcX").setAttribute("visibility", "hidden"); S.forEach((s) => $("rcD-" + s.k).setAttribute("visibility", "hidden")); });
+  })();
+
+  // per-intent dumbbell
+  (function () {
+    const rows = D.perclass.slice().sort((a, b) => a.bert - b.bert || a.tfidf - b.tfidf);
+    const lo = 0.7, P = (v) => ((Math.max(v, lo) - lo) / (1 - lo) * 100).toFixed(2) + "%";
+    let all = false;
+    const el = $("dbChart");
+    function draw() {
+      const vis = all ? rows : rows.slice(0, 15);
+      const ticks = [0.7, 0.8, 0.9, 1.0].map((t) => `<span style="left:${P(t)}">${t.toFixed(1)}</span>`).join("");
+      el.innerHTML = `<div class="db-axis"><span class="small muted">Intent</span><div class="ticks">${ticks}</div><span class="small muted" style="text-align:right">F1</span></div>` +
+        vis.map((r) => {
+          const a = Math.min(r.bert, r.tfidf), b = Math.max(r.bert, r.tfidf);
+          return `<div class="db-row" tabindex="0" data-i="${esc(r.intent)}"><span class="intent">${I(r.intent)}</span><div class="db-track"><i class="ln" style="left:${P(a)};width:calc(${P(b)} - ${P(a)})"></i><i class="dot tfidf" style="left:${P(r.tfidf)}"></i><i class="dot bert" style="left:${P(r.bert)}"></i></div><span class="val">${f3(r.bert)}</span></div>`;
+        }).join("") + `<div class="tip" hidden id="dbTip"></div>`;
+      const tip = $("dbTip");
+      el.querySelectorAll(".db-row").forEach((rowEl) => {
+        const r = rows.find((q) => q.intent === rowEl.dataset.i);
+        const show = () => {
+          tip.innerHTML = `<b>${esc(r.intent)}</b><br>ModernBERT F1 ${f3(r.bert)} (P ${f3(r.bp)}, R ${f3(r.br)})<br>TF–IDF F1 ${f3(r.tfidf)}<br>${r.n} training examples · 40 test`;
+          tip.hidden = false;
+          const er = el.getBoundingClientRect(), rr = rowEl.getBoundingClientRect();
+          tip.style.left = Math.min(Math.max(er.width * 0.6, 140), er.width - 140) + "px"; tip.style.top = (rr.top - er.top) + "px";
+        };
+        rowEl.addEventListener("pointerenter", show); rowEl.addEventListener("focus", show);
+        rowEl.addEventListener("pointerleave", () => (tip.hidden = true)); rowEl.addEventListener("blur", () => (tip.hidden = true));
+      });
+    }
+    draw();
+    $("dbToggle").addEventListener("click", (e) => { all = !all; e.target.textContent = all ? "Show the 15 weakest" : "Show all 77 intents"; e.target.setAttribute("aria-expanded", all); draw(); });
+  })();
+
+  // confusions
+  const conf = D.summary["top_confusions::" + B].slice(0, 8), cmax = conf[0][2];
+  $("confList").innerHTML = conf.map(([g, p, n]) => `<div class="hbar"><span class="intent">${I(g)}<span class="arrow">→</span>${esc(p)}</span><div class="bar" style="width:${n / cmax * 100}%"></div><span class="n">${n}</span></div>`).join("") +
+    `<p class="small muted" style="margin-top:8px">Gold intent → predicted intent, count out of 40 test queries for the gold intent.</p>`;
+
+  // error codes
+  const CODES = { missing_context: "Missing context", annotation_ambiguity: "Annotation ambiguity", intent_pair: "Adjacent intent pair", lexical_overlap: "Lexical overlap" };
+  const counts = Object.keys(CODES).map((k) => [k, D.errors.filter((e) => e.code === k).length]); const codeMax = Math.max(...counts.map((c) => c[1]));
+  $("codeBars").innerHTML = counts.map(([k, n]) => `<div class="hbar"><span>${CODES[k]}</span><div class="bar" style="width:${n / codeMax * 100}%"></div><span class="n">${n}</span></div>`).join("");
+  let filt = "all";
+  const chips = [["all", "All 30"], ...Object.entries(CODES)];
+  function drawErr() {
+    $("codeChips").innerHTML = chips.map(([k, l]) => `<button type="button" class="chip" aria-pressed="${k === filt}" data-k="${k}">${l}</button>`).join("");
+    $("codeChips").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => { filt = c.dataset.k; drawErr(); }));
+    const rows = D.errors.filter((e) => filt === "all" || e.code === filt);
+    $("errTable").innerHTML = `<thead><tr><th>Query and note</th><th>Gold → predicted</th><th class="r">Score</th><th class="r">Gold rank</th></tr></thead><tbody>` +
+      rows.map((e) => `<tr><td style="min-width:220px">${esc(e.norm)}<div class="small muted" style="margin-top:4px">${esc(e.note)}</div></td><td style="min-width:180px"><span class="intent">${I(e.category)}</span><br><span class="arrow">→</span><span class="intent">${I(e.pred)}</span></td><td class="r">${e.conf.toFixed(2)}</td><td class="r">${e.gold_rank <= 3 ? `<span class="pill ok">${e.gold_rank}</span>` : `<span class="pill no">${e.gold_rank}</span>`}</td></tr>`).join("") + "</tbody>";
+  }
+  drawErr();
+
+  // audit + resources
+  const A = D.audit;
+  $("auditTable").innerHTML = "<tbody>" + [
+    ["Rows (train / test)", `${A.rows.train.toLocaleString()} / ${A.rows.test.toLocaleString()}`],
+    ["Intents per split", `${A.n_labels.train} / ${A.n_labels.test}`],
+    ["Train support", `${A.train_support.min}–${A.train_support.max} per intent`],
+    ["Mean words (train / test)", `${A.word_len.train.mean} / ${A.word_len.test.mean}`],
+    ["Repeated texts (train / test)", `${A.repeated_texts.train} / ${A.repeated_texts.test}`],
+    ["Train–test overlap", `${A.train_test_overlap} texts, same labels`],
+    ["Fitting split", `${A.split.train.toLocaleString()} train / ${A.split.val.toLocaleString()} val (seed 42)`],
+    ["ModernBERT tokens (p99.9 / max)", "72 / 93 → max_len 128"],
+  ].map(([k, v]) => `<tr><td>${k}</td><td class="r">${v}</td></tr>`).join("") + "</tbody>";
+  const pl = D.pilot;
+  $("resTable").innerHTML = "<tbody>" + [
+    ["Pilot: peak GPU memory", pl.peak_alloc_GB + " GB"],
+    ["Pilot: median step", (pl.median_step_s * 1000).toFixed(0) + " ms"],
+    ["Pilot: projected 3 epochs", pl.extrapolated_3ep_train_min + " min"],
+    ["Actual 3-epoch run", "65–117 s wall"],
+    ["Total GPU time, all runs", "0.16 GPU-h (budget 1–3)"],
+    ["TF–IDF grid, CPU", "4 min for 16 fits"],
+  ].map(([k, v]) => `<tr><td>${k}</td><td class="r">${v}</td></tr>`).join("") + "</tbody>";
+
+  // grid heatmap
+  (function () {
+    const Cs = [1, 3, 10, 30], combos = [["(1, 1)", "(2, 4)"], ["(1, 1)", "(2, 5)"], ["(1, 2)", "(2, 4)"], ["(1, 2)", "(2, 5)"]];
+    const vals = D.grid.map((g) => g.val_macro_f1), mn = Math.min(...vals), mx = Math.max(...vals), best = mx;
+    let h = `<thead><tr><th>Word n-grams</th><th>Char n-grams</th>${Cs.map((c) => `<th class="r">C = ${c}</th>`).join("")}</tr></thead><tbody>`;
+    for (const [w, c] of combos) {
+      h += `<tr><td class="num">${w.replace("(", "").replace(")", "").replace(", ", "–")}</td><td class="num">${c.replace("(", "").replace(")", "").replace(", ", "–")}</td>`;
+      for (const C of Cs) {
+        const g = D.grid.find((q) => q.word_ngram === w && q.char_ngram === c && q.C === C), t = (g.val_macro_f1 - mn) / (mx - mn);
+        h += `<td class="cell ${g.val_macro_f1 === best ? "sel" : ""}" style="background:color-mix(in oklab, var(--seq-1) ${(t * 70).toFixed(0)}%, var(--seq-0));color:${t > 0.6 ? "#fff" : "var(--fg)"}">${f3(g.val_macro_f1)}</td>`;
+      }
+      h += "</tr>";
+    }
+    $("gridTable").innerHTML = h + "</tbody>";
+  })();
+
+  $("lrTable").innerHTML = `<thead><tr><th>Learning rate</th><th class="r">Val acc</th><th class="r">Val macro-F1</th></tr></thead><tbody>` +
+    D.lr.map((r) => `<tr class="${r.lr === "8e-05" ? "hl" : ""}"><td class="num">${r.lr.replace("e-05", "e-5")}${r.lr === "8e-05" ? ' <span class="muted small">selected</span>' : ""}</td><td class="r">${f3(r.val_accuracy)}</td><td class="r">${f3(r.val_macro_f1)}</td></tr>`).join("") + "</tbody>";
+  $("epTable").innerHTML = `<thead><tr><th>Seed</th><th class="r">Epoch 1</th><th class="r">Epoch 2</th><th class="r">Epoch 3</th></tr></thead><tbody>` +
+    ["42", "13", "7"].map((s) => `<tr><td class="num">${s}</td>${D.epochs[s].map((e) => `<td class="r">${f3(e.val_macro_f1)}</td>`).join("")}</tr>`).join("") + "</tbody>";
+
+  // demo checks
+  const texts = [...new Set(D.demo.map((d) => d.text))];
+  const mark = (d) => `<span class="pill ${d.gold_in_top3 ? "ok" : "no"}">${d.gold_in_top3 ? "✓ top-3" : "✗ missed"}</span>${d.top1_correct ? "" : `<br><span class="small muted">top-1: <span class="intent">${I(d.top1)}</span></span>`}${d.review_prompt ? '<br><span class="small muted">review prompt</span>' : ""}`;
+  $("demoTable").innerHTML = `<thead><tr><th>Query</th><th>Gold intent</th><th>ModernBERT</th><th>TF–IDF</th></tr></thead><tbody>` +
+    texts.map((t) => { const b = D.demo.find((d) => d.text === t && d.model === B), f = D.demo.find((d) => d.text === t && d.model !== B);
+      return `<tr><td style="min-width:200px">${esc(t)}</td><td><span class="intent">${I(b.gold)}</span></td><td style="min-width:120px">${mark(b)}</td><td style="min-width:120px">${mark(f)}</td></tr>`; }).join("") +
+    `<tr class="hl"><td colspan="2">Gold in top 3</td><td>${D.demo.filter((d) => d.model === B && d.gold_in_top3).length} / 15</td><td>${D.demo.filter((d) => d.model !== B && d.gold_in_top3).length} / 15</td></tr></tbody>`;
+})();
+</script>
+</html>
