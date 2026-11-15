@@ -1,0 +1,31 @@
+idx,pass1,pass2,flag,author_review,final,rationale
+0,intent_pair,intent_pair,no,,intent_pair,"""When will I get my card"" fits card_arrival and card_delivery_estimate equally; the two label definitions overlap."
+1,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,"Text leads with ""double charged""; predicted transaction_charged_twice fits at least as well as gold pending_card_payment."
+2,intent_pair,missing_context,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",missing_context,"Transfer direction is unstated: outgoing → pending_transfer, incoming → balance_not_updated. A human could not tell either."
+3,annotation_ambiguity,lexical_overlap,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",lexical_overlap,"""$1.00"" matches the dataset's extra_charge_on_statement examples (the £1/$1 charge); ""reversed"" pulls toward reverted_card_payment?. The gold label is consistent with the dataset."
+4,intent_pair,lexical_overlap,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",lexical_overlap,"""How long does it take for transfers"" is a clear transfer_timing cue; the phrase ""reflect on my balance"" pulls toward balance_not_updated."
+5,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,"""Paid for my top up twice … refund"" reads as transaction_charged_twice or request_refund; gold top_up_reverted is a weak fit."
+6,intent_pair,intent_pair,no,,intent_pair,"""Tried my card a bunch of times, never worked"" fits card_not_working and declined_card_payment; overlapping definitions."
+7,missing_context,missing_context,no,,missing_context,"""What extra charges are there?"" names no transaction type; gold transfer_fee_charged is not recoverable."
+8,missing_context,missing_context,no,,missing_context,Ungrammatical; the intended action (cancel a transfer) cannot be recovered from the wording.
+9,missing_context,missing_context,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",missing_context,"Weak fit for every code: a human can tell it is card_swallowed (""card wouldn't remove"" while getting money), but it has no ATM/swallow keywords. Codebook gap: keyword-free paraphrase."
+10,missing_context,missing_context,no,,missing_context,"Garbled (""money I pushed … as being withdrawn""); what went wrong is unclear."
+11,lexical_overlap,lexical_overlap,no,,lexical_overlap,"""Stole my wallet … block it"" cues gold lost_or_stolen_card; ""attempts to use the card"" pulls toward cash_withdrawal_not_recognised."
+12,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,Describes a declined credit-card purchase; prediction declined_card_payment looks correct and gold declined_transfer looks wrong.
+13,lexical_overlap,missing_context,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",missing_context,"In ""withdraw some money … it disappeared in the machine"", ""it"" can be the card (gold card_swallowed) or the money (prediction pending_cash_withdrawal). The referent is unclear."
+14,lexical_overlap,intent_pair,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",intent_pair,"A virtual card rejected at a merchant is genuinely both virtual_card_not_working and declined_card_payment; the definitions overlap, so it is not one misleading word."
+15,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,Asks how to send an international transfer; gold transfer_into_account (receiving money) is a poor fit. The prediction exchange_rate is also wrong.
+16,lexical_overlap,annotation_ambiguity,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",annotation_ambiguity,"Nothing cues gold card_not_working; ""unblock my card"" is closer to pin_blocked. Gold is a loose fit."
+17,intent_pair,annotation_ambiguity,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",annotation_ambiguity,"""Am I allowed to use any card to make a payment?"" asks which cards are supported; prediction supported_cards_and_currencies fits better than gold visa_or_mastercard."
+18,intent_pair,intent_pair,no,,intent_pair,"""What's with not verifying my Id"" can mean unable_to_verify or why_verify; overlapping labels."
+19,missing_context,missing_context,no,,missing_context,"""Someone stole my money"" does not say the channel (direct debit, card, ATM)."
+20,missing_context,missing_context,no,,missing_context,"""I had a transfer blocked"" does not give the reason (beneficiary vs declined)."
+21,intent_pair,intent_pair,no,,intent_pair,Asks about both countries and currencies; fiat_currency_support and country_support overlap.
+22,intent_pair,intent_pair,no,,intent_pair,"""Transfer didn't get there"" fits transfer_not_received_by_recipient and failed_transfer."
+23,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,"""How can I top-up my card?"" fits topping_up_by_card at least as well as gold top_up_by_cash_or_cheque."
+24,intent_pair,annotation_ambiguity,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",annotation_ambiguity,"""Account does not accept cash deposits"" asks about depositing cash (top_up_by_cash_or_cheque); gold is about a deposit already made that has not shown up."
+25,intent_pair,annotation_ambiguity,yes,"confirmed pass2 (Lihan Li, 2026-11-15)",annotation_ambiguity,"""Can I exchange currencies?"" matches exchange_via_app at least as well as gold fiat_currency_support."
+26,intent_pair,intent_pair,no,,intent_pair,"""Base amount for cross-currency exchanges"" sits between exchange_charge and exchange_rate; overlapping labels."
+27,annotation_ambiguity,annotation_ambiguity,no,,annotation_ambiguity,"""Can't see the top-up amount I just added"" fits pending_top_up better than gold topping_up_by_card."
+28,missing_context,missing_context,no,,missing_context,A repeated failed transfer with no mention of the beneficiary; gold beneficiary_not_allowed is not recoverable.
+29,missing_context,missing_context,no,,missing_context,"""Exchange rate seems off on this transaction"" does not say card payment or cash withdrawal."
