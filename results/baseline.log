@@ -1,0 +1,17 @@
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 4)', 'C': 1, 'val_accuracy': 0.873, 'val_macro_f1': 0.8705210534403253, 'val_top3_accuracy': 0.964, 'fit_s': 8.9}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 4)', 'C': 3, 'val_accuracy': 0.882, 'val_macro_f1': 0.8811682761157996, 'val_top3_accuracy': 0.97, 'fit_s': 10.5}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 4)', 'C': 10, 'val_accuracy': 0.888, 'val_macro_f1': 0.8864701098736348, 'val_top3_accuracy': 0.969, 'fit_s': 12.2}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 4)', 'C': 30, 'val_accuracy': 0.885, 'val_macro_f1': 0.8855244024739368, 'val_top3_accuracy': 0.967, 'fit_s': 14.9}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 5)', 'C': 1, 'val_accuracy': 0.874, 'val_macro_f1': 0.8708859932396463, 'val_top3_accuracy': 0.965, 'fit_s': 8.9}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 5)', 'C': 3, 'val_accuracy': 0.886, 'val_macro_f1': 0.8841338308472002, 'val_top3_accuracy': 0.969, 'fit_s': 12.8}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 5)', 'C': 10, 'val_accuracy': 0.889, 'val_macro_f1': 0.8869859868644969, 'val_top3_accuracy': 0.969, 'fit_s': 15.9}
+{'word_ngram': '(1, 1)', 'char_ngram': '(2, 5)', 'C': 30, 'val_accuracy': 0.89, 'val_macro_f1': 0.8892141168730259, 'val_top3_accuracy': 0.97, 'fit_s': 19.0}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 4)', 'C': 1, 'val_accuracy': 0.885, 'val_macro_f1': 0.8853113317525593, 'val_top3_accuracy': 0.962, 'fit_s': 10.9}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 4)', 'C': 3, 'val_accuracy': 0.891, 'val_macro_f1': 0.8884984512301839, 'val_top3_accuracy': 0.968, 'fit_s': 16.7}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 4)', 'C': 10, 'val_accuracy': 0.896, 'val_macro_f1': 0.8958230841285407, 'val_top3_accuracy': 0.969, 'fit_s': 14.3}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 4)', 'C': 30, 'val_accuracy': 0.897, 'val_macro_f1': 0.8971842912012356, 'val_top3_accuracy': 0.968, 'fit_s': 19.9}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 5)', 'C': 1, 'val_accuracy': 0.881, 'val_macro_f1': 0.8792115218287055, 'val_top3_accuracy': 0.962, 'fit_s': 15.8}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 5)', 'C': 3, 'val_accuracy': 0.891, 'val_macro_f1': 0.8880795565280958, 'val_top3_accuracy': 0.969, 'fit_s': 17.1}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 5)', 'C': 10, 'val_accuracy': 0.896, 'val_macro_f1': 0.8937044404612111, 'val_top3_accuracy': 0.972, 'fit_s': 20.2}
+{'word_ngram': '(1, 2)', 'char_ngram': '(2, 5)', 'C': 30, 'val_accuracy': 0.894, 'val_macro_f1': 0.8923021176463469, 'val_top3_accuracy': 0.971, 'fit_s': 24.5}
+SELECTED {'word_ngram': '(1, 2)', 'char_ngram': '(2, 4)', 'C': 30, 'val_accuracy': 0.897, 'val_macro_f1': 0.8971842912012356, 'val_top3_accuracy': 0.968, 'fit_s': 19.9} threshold 0.81
