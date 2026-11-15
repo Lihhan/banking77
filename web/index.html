@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BANKING77 Intent Router</title>
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#1c1c1a;--muted:#6b6b66;--line:#e3e2dd;--blue:#2a78d6;--orange:#eb6834;
+--ok-bg:#e8f4ec;--ok-ink:#1f6b3a;--warn-bg:#fdf1e3;--warn-ink:#8a4b0c;--track:#ecebe6}
+@media (prefers-color-scheme:dark){:root{--bg:#161615;--card:#1f1f1d;--ink:#ececea;--muted:#a3a29c;--line:#33332f;
+--blue:#5b9bea;--orange:#f08a5d;--ok-bg:#163223;--ok-ink:#8fd6a8;--warn-bg:#3a2a16;--warn-ink:#f2c48a;--track:#2c2c29}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 48px;display:grid;grid-template-columns:270px 1fr;gap:20px}
+@media (max-width:760px){.wrap{grid-template-columns:1fr}main{order:-1}}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em} h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+aside .card+.card{margin-top:14px}
+.seg{display:flex;flex-direction:column;gap:6px}
+.seg label{display:flex;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.seg input:checked+span{font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+input[type=range]{width:100%;accent-color:var(--blue)}
+.row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
+.ex{display:block;width:100%;text-align:left;margin:0 0 6px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);font:inherit;font-size:13.5px;cursor:pointer}
+.ex:hover{border-color:var(--blue)}
+.q{display:flex;gap:8px}
+.q input{flex:1;min-width:0;font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+.q input:focus{outline:2px solid var(--blue);outline-offset:-1px}
+.q button{font:inherit;font-weight:600;padding:0 16px;border:0;border-radius:10px;background:var(--blue);color:#fff;cursor:pointer}
+.banner{margin:16px 0 0;padding:11px 13px;border-radius:10px;display:none}
+.banner.ok{display:block;background:var(--ok-bg);color:var(--ok-ink)} .banner.warn{display:block;background:var(--warn-bg);color:var(--warn-ink)}
+#results{margin-top:18px;display:none}
+.bar{display:grid;grid-template-columns:1fr 52px;gap:10px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer}
+.bar.sel{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.bar code{font-size:13.5px;word-break:break-word}
+.track{height:8px;background:var(--track);border-radius:4px;margin-top:6px;overflow:hidden}
+.fill{height:100%;border-radius:4px;background:var(--blue)}
+.val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.ex.ch{border-style:dashed}
+.expect{margin-top:12px;padding:12px;border-radius:10px;border:1px dashed var(--line);display:none;font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;margin-left:6px}
+.tag.ok{background:var(--ok-bg);color:var(--ok-ink)}.tag.bad{background:var(--warn-bg);color:var(--warn-ink)}
+.gloss{margin-top:10px;padding:12px;border-radius:10px;background:var(--track)}
+.note{font-size:12.5px;color:var(--muted)}
+.status{font-size:13px;color:var(--muted);margin-top:8px;min-height:20px}
+.prog{height:4px;background:var(--track);border-radius:2px;overflow:hidden;margin-top:6px;display:none}.prog div{height:100%;width:0;background:var(--blue);transition:width .2s}
+footer{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <div class="card">
+      <h2>Model</h2>
+      <div class="seg" id="models">
+        <label><input type="radio" name="m" value="bert" checked><span class="dot" style="background:var(--blue)"></span><span>ModernBERT-base</span></label>
+        <label><input type="radio" name="m" value="tfidf"><span class="dot" style="background:var(--orange)"></span><span>TF–IDF + LogReg baseline</span></label>
+      </div>
+      <div class="prog" id="prog"><div></div></div>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="card">
+      <h2>Review threshold</h2>
+      <input type="range" id="thr" min="0" max="1" step="0.01">
+      <div class="row"><span>τ = <b id="thrv"></b></span><span>validation default <span id="thrd"></span></span></div>
+    </div>
+    <div class="card">
+      <h2>Try an example</h2>
+      <div id="examples"></div>
+    </div>
+    <div class="card">
+      <h2>Challenging cases</h2>
+      <p class="note" style="margin:-4px 0 8px">Failures and hard inputs, with the expected intent shown after routing.</p>
+      <div id="challenges"></div>
+    </div>
+  </aside>
+  <main>
+    <h1>Banking Intent Router</h1>
+    <p class="sub">Type a banking-support question. The classifier maps it to one of 77 BANKING77 intents. Both models run in your browser.</p>
+    <form class="q" id="form"><input id="q" placeholder="e.g. my transfer is still pending" autocomplete="off"><button>Route</button></form>
+    <div class="banner" id="banner"></div>
+    <div id="results" class="card">
+      <h2>Top-3 intents</h2>
+      <p class="note" style="margin:-4px 0 10px">Scores are uncalibrated softmax values, used only for ranking. They are not probabilities. Click an intent to see its gloss.</p>
+      <div id="bars"></div>
+      <div class="gloss" id="gloss"></div>
+      <div class="expect" id="expect"></div>
+    </div>
+  </main>
+  <footer>Routing aid only, not financial advice. Course project (Accelerated Computational Linguistics, FA26) by Lihan Li and Xizi Luo. Data: BANKING77 (Casanueva et al., 2020), CC BY 4.0.
+    Model: <a href="https://huggingface.co/Lihhan/banking77-modernbert" target="_blank" rel="noopener">Lihhan/banking77-modernbert</a>. Test accuracy: ModernBERT 93.4%, TF–IDF 91.4%.</footer>
+</div>
+<script type="module">
+import { AutoTokenizer, AutoModelForSequenceClassification, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1";
+import { TfidfModel } from "./tfidf.js";
+env.allowLocalModels = false;
+const MODEL_ID = "Lihhan/banking77-modernbert";
+const THR = { bert: 0.96, tfidf: 0.81 };
+const COLOR = { bert: "var(--blue)", tfidf: "var(--orange)" };
+const EXAMPLES = ["I am still waiting on my card?", "Why was my card declined?", "Is there an exchange fee?",
+  "I sent money to a friend yesterday but it still hasn't arrived."];
+const CHALLENGES = [
+  { q: "I think someone has my card number, there are payments I never made", gold: "compromised_card", label: "Confident error",
+    note: "Two neighbouring intents (compromised_card vs card_payment_not_recognised). ModernBERT gives the wrong one a score of 1.00, so the threshold cannot catch it: scores are uncalibrated." },
+  { q: "Tapping my card on the reader doesn't do anything anymore", gold: "contactless_not_working", label: "Paraphrase without keywords",
+    note: "Never says \"contactless\". Both models miss it, but the low top score triggers the review prompt." },
+  { q: "Can I add my card to my iPhone wallet?", gold: "apple_pay_or_google_pay", label: "Paraphrase without keywords",
+    note: "\"iPhone wallet\" instead of \"Apple Pay\". Both models miss it; the review prompt fires." },
+  { q: "When will my transfer go through?", gold: "pending_transfer", label: "Adjacent transfer intents",
+    note: "A real test-set error. The transfer-status intents (pending, not received, balance not updated, failed) are the weakest group." },
+  { q: "What's the weather like in London tomorrow?", gold: null, label: "Out of scope",
+    note: "BANKING77 has no out-of-scope class, so the model must pick one of the 77 intents. Only the review threshold stops it from routing." },
+];
+const $ = (id) => document.getElementById(id);
+const gloss = await fetch("./glossary.json").then(r => r.json());
+let cur = "bert", thr = THR.bert, last = null, sel = null;
+const routers = {};
+
+function setStatus(t) { $("status").textContent = t; }
+function setThr(v) { thr = v; $("thr").value = v; $("thrv").textContent = v.toFixed(2); }
+function getRouter(name) {
+  return routers[name] ??= loadRouter(name).catch(e => { delete routers[name]; throw e; });
+}
+async function loadRouter(name) {
+  if (name === "tfidf") {
+    setStatus("Loading TF–IDF model (9 MB)…");
+    const m = await TfidfModel.load(".");
+    setStatus("Ready.");
+    return { labels: m.labels, probs: async (t) => m.probs(t) };
+  } else {
+    setStatus("Downloading ModernBERT (300 MB, cached after the first visit)…");
+    const files = {}; $("prog").style.display = "block";
+    const progress_callback = (p) => {
+      if (p.status === "progress" && p.total) { files[p.file] = [p.loaded, p.total];
+        const [l, t] = Object.values(files).reduce((a, b) => [a[0] + b[0], a[1] + b[1]], [0, 0]);
+        $("prog").firstElementChild.style.width = (100 * l / t) + "%"; }
+    };
+    const tok = await AutoTokenizer.from_pretrained(MODEL_ID, { progress_callback });
+    const model = await AutoModelForSequenceClassification.from_pretrained(MODEL_ID, { dtype: "fp16", device: "wasm", progress_callback });
+    $("prog").style.display = "none";
+    const labels = Object.keys(model.config.id2label).sort((a, b) => a - b).map(k => model.config.id2label[k]);
+    setStatus("Ready.");
+    return { labels, probs: async (t) => {
+      const { logits } = await model(tok(t, { truncation: true, max_length: 128 }));
+      const z = Array.from(logits.data), m = Math.max(...z), e = z.map(v => Math.exp(v - m)), s = e.reduce((a, b) => a + b, 0);
+      return e.map(v => v / s); } };
+  }
+}
+const normalize = (t) => t.replace(/\s+/g, " ").trim();
+
+async function run() {
+  const q = normalize($("q").value);
+  if (!q) return;
+  const name = cur, r = await getRouter(name);
+  if (name !== cur) return;
+  const p = await r.probs(q);
+  const top = p.map((s, i) => [r.labels[i], s]).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  last = top; sel = top[0][0]; render();
+}
+function render() {
+  if (!last) return;
+  const [name, score] = last[0], b = $("banner");
+  if (score < thr) { b.className = "banner warn"; b.innerHTML = `⚠ Low confidence (top score ${score.toFixed(2)} &lt; ${thr.toFixed(2)}). Please review the suggestions below or choose a category.`; }
+  else { b.className = "banner ok"; b.innerHTML = `✓ Routed to <b>${name}</b> (top score ${score.toFixed(2)} ≥ ${thr.toFixed(2)}).`; }
+  $("bars").innerHTML = last.map(([n, s]) => `<div class="bar${n === sel ? " sel" : ""}" data-n="${n}" role="button" tabindex="0">
+    <div><code>${n.replace(/_/g, "_<wbr>")}</code><div class="track"><div class="fill" style="width:${(100 * s).toFixed(1)}%;background:${COLOR[cur]}"></div></div></div>
+    <div class="val">${s.toFixed(2)}</div></div>`).join("");
+  $("gloss").innerHTML = `<b>Selected:</b> <code>${sel}</code><br><b>Gloss:</b> ${gloss[sel] ?? "—"}`;
+  $("results").style.display = "block";
+  const ch = CHALLENGES.find(c => c.q === normalize($("q").value)), ex = $("expect");
+  if (!ch) { ex.style.display = "none"; return; }
+  const rank = ch.gold ? last.findIndex(([n]) => n === ch.gold) : -1;
+  const verdict = !ch.gold ? `<span class="tag ${score < thr ? "ok" : "bad"}">${score < thr ? "sent to review" : "auto-routed anyway"}</span>`
+    : rank === 0 ? `<span class="tag ok">top-1 correct</span>` : rank > 0 ? `<span class="tag bad">top-1 wrong · expected is #${rank + 1}</span>` : `<span class="tag bad">top-1 wrong · not in top 3</span>`;
+  ex.innerHTML = `<b>${ch.label}.</b> Expected: <code>${ch.gold ?? "none (no valid intent)"}</code>${verdict}<br><span class="note">${ch.note}</span>`;
+  ex.style.display = "block";
+}
+$("bars").addEventListener("click", (e) => { const d = e.target.closest(".bar"); if (d) { sel = d.dataset.n; render(); } });
+$("bars").addEventListener("keydown", (e) => { const d = e.target.closest(".bar"); if (d && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); sel = d.dataset.n; render(); } });
+$("form").addEventListener("submit", (e) => { e.preventDefault(); run().catch(err => setStatus("Error: " + err.message)); });
+$("thr").addEventListener("input", (e) => { setThr(+e.target.value); render(); });
+document.querySelectorAll("input[name=m]").forEach(el => el.addEventListener("change", () => {
+  cur = el.value; setThr(THR[cur]); $("thrd").textContent = THR[cur].toFixed(2);
+  $("thr").style.accentColor = COLOR[cur]; run().catch(err => setStatus("Error: " + err.message));
+}));
+$("examples").innerHTML = EXAMPLES.map(x => `<button class="ex">${x}</button>`).join("");
+$("challenges").innerHTML = CHALLENGES.map((c, i) => `<button class="ex ch" data-i="${i}">${c.q}</button>`).join("");
+$("challenges").addEventListener("click", (e) => { const b = e.target.closest(".ex"); if (b) { $("q").value = CHALLENGES[b.dataset.i].q; run().catch(err => setStatus("Error: " + err.message)); } });
+$("examples").addEventListener("click", (e) => { if (e.target.classList.contains("ex")) { $("q").value = e.target.textContent; run().catch(err => setStatus("Error: " + err.message)); } });
+setThr(THR.bert); $("thrd").textContent = THR.bert.toFixed(2);
+getRouter("tfidf").then(() => getRouter("bert")).catch(err => setStatus("Error: " + err.message));
+</script>
+</body>
+</html>
