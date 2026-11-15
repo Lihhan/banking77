@@ -119,4 +119,4 @@ Both models miss "Can I add my card to my iPhone wallet?" (`apple_pay_or_google_
 * Two selected hyper-parameters are at the edge of their search ranges: LR 8e-5 and TF–IDF C = 30.
 * The demo is hosted as a static Hugging Face Space where both models run in the browser (fp16 ONNX ModernBERT, JS port of TF–IDF), instead of a hosted Streamlit server: free Hugging Face Spaces no longer run Docker apps. The Streamlit app is still in `src/app.py` for local use.
 * Only the learning rate was tuned for ModernBERT, so it had 3 configuration checks. Epochs stayed capped at 3.
-* Model checkpoints are saved to `/scratch/f008m8h/bank77/models/` because the home quota is too small. The Python venv is at `/scratch/f008m8h/bank77/venv`.
+* Model checkpoints were stored outside the project folder because of a small home-directory quota. Set `BANK77_MODEL_DIR` to point the scripts at them.
