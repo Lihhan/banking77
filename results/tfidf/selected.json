@@ -1,0 +1,12 @@
+{
+  "selected": {
+    "word_ngram": "(1, 2)",
+    "char_ngram": "(2, 4)",
+    "C": 30,
+    "val_accuracy": 0.897,
+    "val_macro_f1": 0.8971842912012356,
+    "val_top3_accuracy": 0.968,
+    "fit_s": 19.9
+  },
+  "threshold": 0.81
+}
