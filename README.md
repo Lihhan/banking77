@@ -45,3 +45,14 @@ cd .. && streamlit run src/app.py                        # 7. demo at http://loc
 ```
 
 The learning-rate check used `python finetune.py --lr {3e-5,5e-5,8e-5}`. All randomness uses seed 42 unless noted. Re-running seed 42 on the same GPU reproduced the validation scores exactly.
+
+## Generative AI use
+
+We used Claude Opus 5.5 to draft:
+
+* the exploratory dataset analysis (`src/audit.py`, `figures/dataset_diagnostics.png`) and the initial code scaffolding for data loading, training and evaluation;
+* the hosted demo (`web/`) and the local Streamlit app (`src/app.py`);
+* the plotting code and the HTML results report (`figures/`, `report/`);
+* both coding passes of the 30-error qualitative analysis, following our codebook (`results/error_codebook.md`). Lihan Li reviewed the 10 flagged close calls. The other 20 codes were not reviewed one by one, so this is AI-assisted coding, not independent human annotation.
+
+We reviewed, revised and tested all generated code. We checked the dataset statistics against the source data and every reported number against the saved predictions in `results/`. We also checked the browser model against the PyTorch model. The research questions, experimental design, model and threshold selection, all experiment runs, and the interpretation and conclusions are our own.
