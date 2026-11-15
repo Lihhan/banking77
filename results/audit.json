@@ -1,0 +1,142 @@
+{
+  "sha256": {
+    "train.csv": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+    "test.csv": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d"
+  },
+  "rows": {
+    "train": 10003,
+    "test": 3080
+  },
+  "n_labels": {
+    "train": 77,
+    "test": 77,
+    "categories.json": 77
+  },
+  "labels_match_categories_json": true,
+  "empty_fields": 0,
+  "word_len": {
+    "train": {
+      "mean": 11.99,
+      "median": 10.0,
+      "max": 79
+    },
+    "test": {
+      "mean": 11.0,
+      "median": 9.0,
+      "max": 69
+    }
+  },
+  "train_support": {
+    "min": 35,
+    "min_label": "contactless_not_working",
+    "max": 187,
+    "max_label": "card_payment_fee_charged"
+  },
+  "test_support_unique": [
+    40
+  ],
+  "repeated_texts": {
+    "train": 4,
+    "test": 1
+  },
+  "train_label_conflicts_in_dups": 0,
+  "train_test_overlap": 7,
+  "overlap_same_label": true,
+  "overlap_texts": [
+    {
+      "text": "At which ATMs can I use this card?",
+      "train_labels": [
+        "atm_support"
+      ],
+      "test_labels": [
+        "atm_support"
+      ]
+    },
+    {
+      "text": "How do I unblock my PIN?",
+      "train_labels": [
+        "pin_blocked"
+      ],
+      "test_labels": [
+        "pin_blocked"
+      ]
+    },
+    {
+      "text": "I don't live in the UK. Can I still get a card?",
+      "train_labels": [
+        "country_support"
+      ],
+      "test_labels": [
+        "country_support"
+      ]
+    },
+    {
+      "text": "There are a few transaction that I don't recognize, I think someone managed to get my card details and use it.",
+      "train_labels": [
+        "compromised_card"
+      ],
+      "test_labels": [
+        "compromised_card"
+      ]
+    },
+    {
+      "text": "What businesses accept this card?",
+      "train_labels": [
+        "card_acceptance"
+      ],
+      "test_labels": [
+        "card_acceptance"
+      ]
+    },
+    {
+      "text": "Where can I use my card?",
+      "train_labels": [
+        "card_acceptance"
+      ],
+      "test_labels": [
+        "card_acceptance"
+      ]
+    },
+    {
+      "text": "Which cash machines will allow me to change my PIN?",
+      "train_labels": [
+        "change_pin"
+      ],
+      "test_labels": [
+        "change_pin"
+      ]
+    }
+  ],
+  "repeated_train_texts": [
+    {
+      "norm": "I can't seem to be able to use my card",
+      "category": "card_not_working"
+    },
+    {
+      "norm": "I put the wrong pin too many times and now it is blocked. Can you help me unblock it?",
+      "category": "pin_blocked"
+    },
+    {
+      "norm": "Where can I withdraw money from?",
+      "category": "atm_support"
+    },
+    {
+      "norm": "Do I need to go to a physical bank to change my PIN?",
+      "category": "change_pin"
+    }
+  ],
+  "repeated_test_texts": [
+    {
+      "norm": "Which ATMs accept this card?",
+      "category": "atm_support"
+    }
+  ],
+  "split": {
+    "pool": 9992,
+    "train": 8992,
+    "val": 1000,
+    "val_min_per_class": 3,
+    "test_full": 3080,
+    "test_overlap_free": 3073
+  }
+}
