@@ -1,0 +1,31 @@
+idx,code,note
+0,intent_pair,card_arrival vs card_delivery_estimate: "when will I get my card" fits both
+1,annotation_ambiguity,"text explicitly says double charged; predicted transaction_charged_twice is defensible"
+2,intent_pair,pending_transfer vs balance_not_updated_after_bank_transfer (direction of transfer unstated)
+3,annotation_ambiguity,"asks why a charge was not reversed; gold extra_charge_on_statement vs predicted reverted_card_payment? both plausible"
+4,intent_pair,transfer_timing vs balance_not_updated_after_bank_transfer
+5,annotation_ambiguity,"'paid for my top up twice' labelled top_up_reverted; predicted transaction_charged_twice reads as correct"
+6,intent_pair,card_not_working vs declined_card_payment
+7,missing_context,"'What extra charges are there?' gives no transaction type"
+8,missing_context,ungrammatical query; intended action (cancel transfer) not recoverable from wording
+9,missing_context,"card stuck while retrieving money, but no ATM/swallow cue words"
+10,missing_context,garbled query (pushed / withdrawn); unclear what went wrong
+11,lexical_overlap,"'check if there were any attempts to use the card' pulls toward cash_withdrawal_not_recognised; stolen wallet is the main point"
+12,annotation_ambiguity,"text describes declined card purchases; gold declined_transfer, prediction declined_card_payment looks correct"
+13,lexical_overlap,"'withdraw money ... disappeared in the machine' pulls toward pending_cash_withdrawal; gold card_swallowed"
+14,lexical_overlap,"'rejected at a merchant' pulls toward declined_card_payment; 'virtual card' cue under-weighted"
+15,annotation_ambiguity,"'How do I do an international transfer?' labelled transfer_into_account; no exchange/receiving cue"
+16,lexical_overlap,"'unblock' strongly cues pin_blocked; gold card_not_working"
+17,intent_pair,visa_or_mastercard vs supported_cards_and_currencies
+18,intent_pair,unable_to_verify_identity vs why_verify_identity
+19,missing_context,"'someone stole my money' — channel (direct debit, card, ATM) unstated"
+20,missing_context,"'I had a transfer blocked' — reason (beneficiary vs declined) unstated"
+21,intent_pair,fiat_currency_support vs country_support
+22,intent_pair,transfer_not_received_by_recipient vs failed_transfer
+23,annotation_ambiguity,"'How can I top-up my card?' labelled top_up_by_cash_or_cheque; predicted topping_up_by_card is at least as plausible"
+24,intent_pair,balance_not_updated_after_cheque_or_cash_deposit vs top_up_by_cash_or_cheque
+25,intent_pair,fiat_currency_support vs exchange_via_app
+26,intent_pair,exchange_charge vs exchange_rate
+27,annotation_ambiguity,"'can't see the top-up amount I just added' labelled topping_up_by_card; pending_top_up fits the wording"
+28,missing_context,"repeated failed transfer; beneficiary issue not mentioned"
+29,missing_context,"'exchange rate seems off on this transaction' — card payment vs cash withdrawal unstated"
