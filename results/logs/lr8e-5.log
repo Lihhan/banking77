@@ -1,0 +1,31 @@
+Loading weights:   0%|          | 0/136 [00:00<?, ?it/s]Loading weights: 100%|██████████| 136/136 [00:00<00:00, 46054.04it/s]
+[transformers] [1mModernBertForSequenceClassification LOAD REPORT[0m from: answerdotai/ModernBERT-base
+Key               | Status     | 
+------------------+------------+-
+decoder.bias      | UNEXPECTED | 
+classifier.bias   | MISSING    | 
+classifier.weight | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+step 50/843 loss 3.3535
+step 100/843 loss 1.2597
+step 150/843 loss 0.5274
+step 200/843 loss 0.4365
+step 250/843 loss 0.1099
+{'epoch': 1, 'step': 281, 'val_accuracy': 0.879, 'val_macro_f1': 0.8816761688821878, 'val_top3_accuracy': 0.969}
+step 300/843 loss 0.3071
+step 350/843 loss 0.0346
+step 400/843 loss 0.4950
+step 450/843 loss 0.0268
+step 500/843 loss 0.0170
+step 550/843 loss 0.5372
+{'epoch': 2, 'step': 562, 'val_accuracy': 0.905, 'val_macro_f1': 0.9085275550745162, 'val_top3_accuracy': 0.965}
+step 600/843 loss 0.0089
+step 650/843 loss 0.0112
+step 700/843 loss 0.0015
+step 750/843 loss 0.0148
+step 800/843 loss 0.0025
+{'epoch': 3, 'step': 843, 'val_accuracy': 0.921, 'val_macro_f1': 0.9244496340913217, 'val_top3_accuracy': 0.98}
+{"args": {"lr": 8e-05, "epochs": 3, "bs": 16, "accum": 2, "max_len": 128, "seed": 42, "pilot": 0, "tag": null, "save_model": false}, "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition", "steps": 843, "peak_alloc_GB": 3.67, "median_step_s": 0.0987, "wall_s": 117.2, "best": {"epoch": 3, "step": 843, "val_accuracy": 0.921, "val_macro_f1": 0.9244496340913217, "val_top3_accuracy": 0.98}, "threshold": 0.96}
