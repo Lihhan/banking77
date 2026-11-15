@@ -1,0 +1,21 @@
+{
+  "args": {
+    "lr": 5e-05,
+    "epochs": 3,
+    "bs": 16,
+    "accum": 2,
+    "max_len": 128,
+    "seed": 42,
+    "pilot": 100,
+    "tag": null,
+    "save_model": false
+  },
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "steps": 100,
+  "peak_alloc_GB": 3.5,
+  "median_step_s": 0.0936,
+  "wall_s": 27.0,
+  "epoch_log": [],
+  "steps_per_epoch": 281,
+  "extrapolated_3ep_train_min": 1.32
+}
