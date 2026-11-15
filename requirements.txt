@@ -9,3 +9,5 @@ numpy==2.5.4
 pandas==3.1.1
 matplotlib==3.11.2
 streamlit==1.67.0
+onnx==1.23.2          # web/export_web.py only
+onnxruntime==1.32.0   # web/export_web.py only (fp16 conversion)
