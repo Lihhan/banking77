@@ -1,0 +1,11 @@
+# Tested with Python 3.14.4 on Linux + CUDA 12.8 (NVIDIA RTX PRO 6000 Blackwell)
+# Install torch first for your CUDA, e.g.: pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+torch==2.11.0
+transformers==5.23.0
+accelerate==1.15.0
+scikit-learn==1.9.1
+scipy==1.18.1
+numpy==2.5.4
+pandas==3.1.1
+matplotlib==3.11.2
+streamlit==1.67.0
