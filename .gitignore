@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+# Fine-tuned checkpoint (~600 MB) is distributed separately; see README
+models/
+web/build/
