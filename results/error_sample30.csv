@@ -1,0 +1,31 @@
+norm,category,pred,conf,gold_rank,tfidf_pred
+When will I get my card?,card_arrival,card_delivery_estimate,0.995,2,card_delivery_estimate
+"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",pending_card_payment,transaction_charged_twice,0.999,9,transaction_charged_twice
+Why is a money transfer not showing?,pending_transfer,balance_not_updated_after_bank_transfer,0.649,2,pending_transfer
+"It's been two weeks, why has the transaction for $1.00 not been reversed?",extra_charge_on_statement,reverted_card_payment?,0.815,2,reverted_card_payment?
+how long dies it take for transfers to reflect on my balance,transfer_timing,balance_not_updated_after_bank_transfer,0.86,2,balance_not_updated_after_bank_transfer
+"Hi, i don't know what's going on i've just paid for my top up twice by accident can you help me get a refund please.",top_up_reverted,transaction_charged_twice,0.927,5,request_refund
+I've tried my card a bunch of times and it never worked.,card_not_working,declined_card_payment,0.595,2,declined_card_payment
+What extra charges are there?,transfer_fee_charged,extra_charge_on_statement,0.509,3,extra_charge_on_statement
+Can I change the amount I made on a payment that I made to the payment is correct.,cancel_transfer,extra_charge_on_statement,0.247,2,card_payment_wrong_exchange_rate
+I was retrieving money and my card wouldn't remove.,card_swallowed,lost_or_stolen_card,0.389,2,declined_cash_withdrawal
+Where is the money I pushed it's on my mobile app as being withdrawn.,wrong_amount_of_cash_received,cash_withdrawal_not_recognised,0.856,5,cash_withdrawal_not_recognised
+"Someone stole my wallet earlier today, not sure exactly when, probably on Piccadilly circus. Can you check if there were any attempts to use the card and obviously block it?",lost_or_stolen_card,cash_withdrawal_not_recognised,0.491,3,lost_or_stolen_card
+Good morning. I tried to make a purchase with my credit card last night and again this morning. Both times it was declined. Can you investigate?,declined_transfer,declined_card_payment,0.472,2,declined_transfer
+WTF??? I tried to withdraw some money at a Metro bank on High St. Kensington and without any notice it disappeared in the machine. The bank was already closed so I couldn't do anything. How do I get it back?,card_swallowed,pending_cash_withdrawal,0.533,3,pending_cash_withdrawal
+I was trying to use my virtual card at a merchant and it was rejected. How can I fix this?,virtual_card_not_working,declined_card_payment,0.895,2,virtual_card_not_working
+How do I do an international transfer?,transfer_into_account,exchange_rate,0.329,2,transfer_into_account
+How do I unblock my card using the app?,card_not_working,pin_blocked,0.989,2,pin_blocked
+Am I allowed to use any card to make a payment?,visa_or_mastercard,supported_cards_and_currencies,0.812,6,reverted_card_payment?
+What's with not verifying my Id?,unable_to_verify_identity,why_verify_identity,0.898,2,unable_to_verify_identity
+someone stole my money,direct_debit_payment_not_recognised,cash_withdrawal_not_recognised,0.544,7,lost_or_stolen_card
+I had a transfer blocked,beneficiary_not_allowed,declined_transfer,0.422,4,pin_blocked
+What countries can I travel to and have access to their currencies?,fiat_currency_support,country_support,0.743,4,country_support
+I need to find out why my transfer didn't get there.,transfer_not_received_by_recipient,failed_transfer,0.754,2,failed_transfer
+How can I top-up my card?,top_up_by_cash_or_cheque,topping_up_by_card,0.964,9,top_up_limits
+Why does my account not accept cash deposits?,balance_not_updated_after_cheque_or_cash_deposit,top_up_by_cash_or_cheque,0.608,2,balance_not_updated_after_cheque_or_cash_deposit
+Can I exchange currencies?,fiat_currency_support,exchange_via_app,0.992,2,exchange_via_app
+What is the base amount for cross-currency exchanges?,exchange_charge,exchange_rate,0.436,2,exchange_charge
+Why can't I see the top-up amount I just added to my account?,topping_up_by_card,pending_top_up,0.793,2,pending_top_up
+I've tried numerous times to submit a transfer of funds. Why isn't it going through?,beneficiary_not_allowed,failed_transfer,0.579,2,beneficiary_not_allowed
+The exchange rate seems off on this transaction,card_payment_wrong_exchange_rate,wrong_exchange_rate_for_cash_withdrawal,0.62,2,wrong_exchange_rate_for_cash_withdrawal
