@@ -1,0 +1,49 @@
+{
+  "args": {
+    "lr": 3e-05,
+    "epochs": 3,
+    "bs": 16,
+    "accum": 2,
+    "max_len": 128,
+    "seed": 42,
+    "pilot": 0,
+    "tag": null,
+    "save_model": false
+  },
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "steps": 843,
+  "peak_alloc_GB": 3.67,
+  "median_step_s": 0.0826,
+  "wall_s": 102.0,
+  "epoch_log": [
+    {
+      "epoch": 1,
+      "step": 281,
+      "val_accuracy": 0.85,
+      "val_macro_f1": 0.8562507500424135,
+      "val_top3_accuracy": 0.952
+    },
+    {
+      "epoch": 2,
+      "step": 562,
+      "val_accuracy": 0.9,
+      "val_macro_f1": 0.9038417741443396,
+      "val_top3_accuracy": 0.97
+    },
+    {
+      "epoch": 3,
+      "step": 843,
+      "val_accuracy": 0.906,
+      "val_macro_f1": 0.9081537273077311,
+      "val_top3_accuracy": 0.968
+    }
+  ],
+  "best": {
+    "epoch": 3,
+    "step": 843,
+    "val_accuracy": 0.906,
+    "val_macro_f1": 0.9081537273077311,
+    "val_top3_accuracy": 0.968
+  },
+  "threshold": 0.9
+}
