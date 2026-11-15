@@ -17,8 +17,7 @@ RESULTS = ROOT / "results"
 FIGS = ROOT / "figures"
 SEED = 42
 # Fine-tuned checkpoints: set BANK77_MODEL_DIR to override; defaults to <project>/models.
-_SCRATCH = Path("/scratch/f008m8h/bank77/models")  # original run location (home quota is small)
-MODEL_DIR = Path(os.environ.get("BANK77_MODEL_DIR", _SCRATCH if _SCRATCH.exists() else ROOT / "models"))
+MODEL_DIR = Path(os.environ.get("BANK77_MODEL_DIR", ROOT / "models"))
 WORD_RE = re.compile(r"\w+(?:'\w+)?")  # regex word-token proxy used in the proposal
 
 
